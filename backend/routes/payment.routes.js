@@ -1,14 +1,16 @@
-// import express from "express";
-// import { sendPayment,getPayments } from "../controllers/payment.controller.js";
-// import { verifyJWT } from "../middlewares/auth.middleware.js";
+import { Router } from "express";
+import { sendPayment, getPayments } from "../controllers/payment.controller.js";
 
-// const router = express.Router();
+// import {getAllJobs, PostJob} from '../controllers/job.controller.js'
 
-// // ✅ Route to send a new message
-// router.post("/", verifyJWT, sendPayment);
+import { authorizeAlumni, verifyJWT } from "../middlewares/auth.middleware.js";
 
-// // ✅ Route to get messages for a specific user
-// router.get("/", verifyJWT, getPayments);
 
-// export default router;
 
+const router = Router();
+
+router.route('/sendpayment').post(verifyJWT,sendPayment)
+router.route('/getpayment').get(verifyJWT,getPayments)
+
+
+export default router

@@ -12,48 +12,58 @@ import LandingPage from './LandingPage/LandingPage.jsx';
 import Layout from './Layout.jsx';
 import Register from './pages/authPages/Register.jsx';
 
-import GetAllJobs from './pages/jobsPage/GetAllJobs.jsx';
-import UserDashboard from './pages/UserDashboard.jsx';
-import Batches from './pages/Batches.jsx';
-import EventPosting from './pages/eventsPage/EventPosting.jsx';
-import ShowProjects from './pages/projectPages/ShowProjects.jsx';
-import UpdateProfile from './components/UpdateProfile.jsx';
-import Dashboard from './components/Dashboard.jsx';
-import BatchUsers from './pages/BatchUsers.jsx';
-import Donations from './pages/Donations.jsx';
-import ChatPage from '../../frontend/src/components/ChatPage.jsx';
-import SolanaTransaction from './components/SolanaTransaction.jsx';
-import RazorpayTransaction from './components/RazorPayTransaction.jsx';
+import GetAllJobs from './pages/jobsPage/GetAllJobs.jsx'
+import UserDashboard from './pages/UserDashboard.jsx'
+import Batches from './pages/Batches.jsx'
 
-// ProtectedRoute component: If not logged in, redirect to /login
-const ProtectedRoute = () => {
-  const { userInfo } = useSelector((state) => state.auth);
-  return userInfo ? <Outlet /> : <Navigate to="/login" />;
-};
+import EventPosting from './pages/eventsPage/EventPosting.jsx'
+// import OpenSourceProjectPosting from './pages/projectPages/OpenSourceProjectPosting.jsx'
+import ShowProjects from './pages/projectPages/ShowProjects.jsx'
+// import GetAllEvents from './pages/eventsPage/GetAllEvents.jsx'
+import UpdateUserProfile from './pages/updateProfile/UpdateUserProfile.jsx'
+// import Donation from '../src/pages/Donation.jsx'
+
+import BatchUsers from './pages/BatchUsers.jsx'
+
+import Donations from './pages/Donations.jsx'
+
+
+import ChatPage from '../../frontend/src/components/ChatPage.jsx'
+import SolanaTransaction from './components/SolanaTransaction.jsx'
+import RazorpayTransaction from './components/RazorPayTransaction.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Layout />}>
-      {/* Public routes */}
-      <Route index element={<LandingPage />} />
-      <Route path='login' element={<Login />} />
-      <Route path='register' element={<Register />} />
-      <Route path='eventposting' element={<EventPosting />} />
+    <Route path='/' element={<Layout/>}>
+      <Route index element={<LandingPage/>}/>
+      <Route path='login' element={<Login/>} />
+      <Route path='register' element={<Register/>}/>
+      <Route path='alljobs' element={<GetAllJobs/>}/>
 
-      {/* Protected routes */}
-      <Route element={<ProtectedRoute />}>
-        <Route path='alljobs' element={<GetAllJobs />} />
-        <Route path='getCurrentUser' element={<UserDashboard />} />
-        <Route path='batches' element={<Batches />} />
-        <Route path="/chat/:userId" element={<ChatPage />} />
-        <Route path='getAllProjects' element={<ShowProjects />} />
-        <Route path="/update-profile" element={<UpdateProfile />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="donation" element={<Donations />} />
-        <Route path="/donations/solana" element={<SolanaTransaction />} />
+     
+
+      <Route path='getCurrentUser' element={<UserDashboard/>}/>
+      <Route path='batches' element={<Batches/>}/>
+
+      <Route path="/chat/:userId" element={<ChatPage/>} />
+ {/* <Route path='getallevents' element={<GetAllEvents/>}/> */} 
+      <Route path='eventposting' element={<EventPosting/>}/>
+      <Route path='getAllProjects' element={<ShowProjects/>}/>
+      <Route path='updateProfile' element={<UpdateUserProfile/>}/>
+
+      {/* <Route path='projectposting' element={<OpenSourceProjectPosting/>}/> */}
+
+      {/* <Route path="/update-profile" element={<UpdateProfile />} />
+          <Route path="/dashboard" element={<Dashboard />} /> */}
+      {/* <Route path='projectposting' element={<OpenSourceProjectPosting/>}/> */}
+
+
+      <Route path="/chat/:userId" element={<ChatPage />} />
+      <Route path="donation" element={<Donations />} />
+      <Route path="/donations/solana" element={<SolanaTransaction />} />
         <Route path="/donations/razorpay" element={<RazorpayTransaction />} />
         <Route path="/batch/:batchName" element={<BatchUsers />} />
-      </Route>
+
     </Route>
   )
 );
