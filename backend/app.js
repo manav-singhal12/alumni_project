@@ -25,14 +25,31 @@ const app = express()
 //     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 //     allowedHeaders: ["Content-Type", "Authorization"],
 // }));
-app.use(
+const allowedOrigins = [
+    "http://localhost:5173", // Local development
+    "https://alumni-project-qwg6.vercel.app", // Deployed frontend
+    "https://alumni-delta.vercel.app",
+    "https://alumni-project-3.onrender.com", // Backend URL
+  ];
+  
+  app.use(
     cors({
-        origin: "*",  // Allow all origins
-        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        credentials: true, // Enable credentials (only works if origin is NOT "*")
-        allowedHeaders: ["Content-Type", "Authorization"],
+      origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+  
+        if (allowedOrigins.indexOf(origin) === -1) {
+          var msg =
+            "The CORS policy for this site does not allow access from the specified Origin.";
+          return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+      },
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      credentials: true,
+      allowedHeaders: ["Content-Type", "Authorization"],
     })
-);
+  );
 
   
 //   app.use(
