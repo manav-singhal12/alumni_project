@@ -23,12 +23,14 @@ import ShowProjects from './pages/projectPages/ShowProjects.jsx'
 import UpdateUserProfile from './pages/updateProfile/UpdateUserProfile.jsx'
 import Donation from './pages/Payment/Donation.jsx'
 
-
+import BatchUsers from './pages/BatchUsers.jsx'
 
 // import Donations from './pages/Donations.jsx'
 
 
 import ChatPage from '../../frontend/src/components/ChatPage.jsx'
+import SolanaTransaction from './components/SolanaTransaction.jsx'
+import RazorpayTransaction from './components/RazorPayTransaction.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(

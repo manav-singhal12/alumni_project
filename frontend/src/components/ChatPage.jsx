@@ -13,10 +13,12 @@ const ChatPage = () => {
   const [currentUserId, setCurrentUserId] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
+  const[receiverName,setReceiverName]=useState('');
   const messagesEndRef = useRef(null);
   useEffect(() => {
     getCurrentUser();
     fetchMessages();
+    getReceivertUser();
 
     // Listen for incoming messages
     socket.on("receiveMessage", (message) => {
@@ -68,7 +70,19 @@ const ChatPage = () => {
       );
     }
   };
-
+  const getReceivertUser = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5230/api/v1/users/getReceiverUser`,
+        { withCredentials: true }
+      );
+      console.log("Receiver User Data:", response.data);
+      setReceiverName(response.data.data.username);
+    } catch (error) {
+      console.error("Error fetching receiver user:", error.response?.data || error.message);
+    }
+  };
+  
   const fetchMessages = async () => {
     try {
       const response = await axios.get(
@@ -127,6 +141,7 @@ const ChatPage = () => {
       {/* Chat Box Covering the Entire Screen */}
       <div className="flex flex-col flex-1">
         {/* Online Status */}
+        <span className="text-lg font-bold mb-2">Chat with {receiverName}</span>
         <div className="mb-2 flex gap-2">
           <span className="font-semibold">Status:</span>
           {onlineUsers.includes(userId) ? (
