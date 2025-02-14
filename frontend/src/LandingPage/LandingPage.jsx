@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import image1 from './1.webp'
-import image2 from './iiitu_image2.webp'
-import image3 from './iiitu_image3.webp'
-import image4 from './iiitu_inter.webp'
-
+import image1 from './1.webp';
+import image2 from './iiitu_image2.webp';
+import image3 from './iiitu_image3.webp';
+import image4 from './iiitu_inter.webp';
 
 const LandingPage = () => {
   const fullText = "Weelcome to the Alumni Association";
@@ -20,7 +19,7 @@ const LandingPage = () => {
       }
     }, 100);
     return () => clearInterval(timer);
-  }, [fullText]);
+  }, []);
 
   const gridItems = [
     {
@@ -49,13 +48,36 @@ const LandingPage = () => {
     },
   ];
 
+  const successStories = [
+    {
+      name: "Rohit Sharma",
+      title: "Innovative Entrepreneur",
+      description: "Rohit founded a tech startup that revolutionized online education, empowering thousands of students globally. Rohit founded a tech startup that revolutionized online education, empowering thousands of students globally."
+    },
+    {
+      name: "Shreya Kapoor",
+      title: "Tech Trailblazer",
+      description: "Shreya's breakthrough work in AI has earned her accolades and significantly advanced research in machine learning. Shreya's breakthrough work in AI has earned her accolades and significantly advanced research in machine learning."
+    },
+    {
+      name: "Amit Verma",
+      title: "Global Business Leader",
+      description: "Amit's visionary leadership has driven transformative changes across industries and fostered international collaborations. Amit's visionary leadership has driven transformative changes across industries and fostered international collaborations."
+    },
+    {
+      name: "Priya Singh",
+      title: "Social Impact Pioneer",
+      description: "Priya's commitment to social entrepreneurship has led to sustainable development initiatives in underprivileged communities. Priya's commitment to social entrepreneurship has led to sustainable development initiatives in underprivileged communities."
+    }
+  ];
+
   return (
     <main id="home">
       {/* Hero Section */}
       <section
         className="relative h-[70vh] flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${image3})` }}
-      >
+        >
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative text-center text-white px-4">
           <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-wider">
@@ -67,24 +89,21 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Expanded About Section */}
-      <section className="py-12 bg-gray-100">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-[#004d40] mb-6">
-            About Our Alumni Association
+      {/* Success Stories Section */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center text-[#004d40] mb-8">
+            Success Stories of our alumni 
           </h2>
-          <p className="text-lg text-gray-700 mb-4">
-            Our Alumni Association is dedicated to fostering lifelong connections and empowering our graduates. We celebrate the successes of our community, create valuable networking opportunities, and offer resources that promote professional growth.
-          </p>
-          <p className="text-lg text-gray-700 mb-4">
-            Whether you're looking to reconnect with old friends, share your success story, or gain industry insights, our association is here to support you. Join us as we build a vibrant and collaborative network, uniting generations through shared achievements and mutual inspiration.
-          </p>
-          <p className="text-lg text-gray-700 mb-4">
-            We also organize a variety of events throughout the year, including annual reunions, professional development workshops, and exclusive networking sessions. These gatherings provide the perfect platform for alumni to exchange ideas, forge new partnerships, and inspire the next generation of leaders.
-          </p>
-          <p className="text-lg text-gray-700">
-            Our commitment extends beyond events and networking. We offer mentorship programs, career support, and continuous learning opportunities to help our members stay ahead in a rapidly evolving professional landscape. Together, we create a legacy of excellence, innovation, and community spirit.
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {successStories.map((story, index) => (
+              <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-lg">
+                <h3 className="text-xl font-semibold mb-2">{story.name}</h3>
+                <p className="text-[#004d40] font-medium mb-2">{story.title}</p>
+                <p className="text-gray-700">{story.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -99,6 +118,29 @@ const LandingPage = () => {
             </div>
           </div>
         ))}
+      </section>
+
+      {/* Expanded About Section */}
+      <section className="py-12 bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="bg-white p-8 shadow-xl rounded-lg">
+            <h2 className="text-3xl font-bold text-center text-[#004d40] mb-6">
+              About Our Alumni Association
+            </h2>
+            <p className="text-lg text-gray-700 mb-4">
+              Our Alumni Association is dedicated to fostering lifelong connections and empowering our graduates. We celebrate the successes of our community, create valuable networking opportunities, and offer resources that promote professional growth.
+            </p>
+            <p className="text-lg text-gray-700 mb-4">
+              Whether you're looking to reconnect with old friends, share your success story, or gain industry insights, our association is here to support you. Join us as we build a vibrant and collaborative network, uniting generations through shared achievements and mutual inspiration.
+            </p>
+            <p className="text-lg text-gray-700 mb-4">
+              We also organize a variety of events throughout the year, including annual reunions, professional development workshops, and exclusive networking sessions. These gatherings provide the perfect platform for alumni to exchange ideas, forge new partnerships, and inspire the next generation of leaders.
+            </p>
+            <p className="text-lg text-gray-700">
+              Our commitment extends beyond events and networking. We offer mentorship programs, career support, and continuous learning opportunities to help our members stay ahead in a rapidly evolving professional landscape. Together, we create a legacy of excellence, innovation, and community spirit.
+            </p>
+          </div>
+        </div>
       </section>
     </main>
   );

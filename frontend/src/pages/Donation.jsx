@@ -182,7 +182,7 @@ const Donation = () => {
   };
 
   return (
-    <div className="ml-80">
+    <div >
       <div className="min-h-screen flex items-center justify-center bg-[#e0f2f1] p-4">
         <div className="bg-white p-8 rounded-xl shadow-lg max-w-lg w-full">
           <h2 className="text-2xl font-bold text-[#004d40] mb-4 text-center">
