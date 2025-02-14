@@ -349,12 +349,12 @@ function EventPosting() {
        
        
         {/* Display Events Grid */}
+      dsgd
       
       
       
       
-      
-          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {events.map((event) => (
             <div
               key={event.id}
@@ -379,7 +379,7 @@ function EventPosting() {
                   </span>
                 </div>
                 {/* Show delete button if this event was posted by the logged-in user */}
-                 {user && event.postedBy === user.email && (
+                 {/* {user && event.postedBy === user.email && (
                   <button
                     onClick={() => handleDeleteEvent(event.id)}
                     className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-300"
@@ -390,7 +390,7 @@ function EventPosting() {
               </div>
             </div>
           ))} 
-          </section> 
+          </section>  */}
 
 
 
