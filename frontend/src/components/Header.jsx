@@ -7,39 +7,32 @@ import { toast } from 'react-toastify';
 import { logout } from "../redux/auth/authSlice.js";
 
 const Header = () => {
-    const {userInfo} = useSelector(state=>state.auth)
-    
-
+  const { userInfo } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // Dropdown and mobile menu state
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const dropdownRef = useRef(null);
- 
 
-
-  const dispatch = useDispatch()
-//   console.log()
-  
-//   console.log( "the user information is " , userInfo)
+  // Toggle dropdown visibility
   const toggleDropdown = () => {
     setDropdownVisible((prev) => !prev);
   };
 
-
+  // Logout handler (calls the API and then logs out in redux)
   const [logoutApiCall] = useLogoutMutation();
-
-
-const LogoutHandler = async()=>{
-  
-    await logoutApiCall().unwrap();
-    dispatch(logout());
-      toast.success(" logout success")
-          navigate("/");
-
-
-
-}
-
-
+  const LogoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      toast.success("Logout successful");
+      navigate("/");
+    } catch (error) {
+      toast.error("Logout failed");
+    }
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -53,9 +46,9 @@ const LogoutHandler = async()=>{
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Optional: Animate nav items on load
+  // Optional: Animate nav items on load (for both desktop and mobile menus)
   useEffect(() => {
-    const navItems = document.querySelectorAll('nav ul li');
+    const navItems = document.querySelectorAll('.animate-nav li');
     navItems.forEach((item, index) => {
       item.style.opacity = 0;
       item.style.transform = 'translateX(-30px)';
@@ -65,13 +58,150 @@ const LogoutHandler = async()=>{
         item.style.transform = 'translateX(0)';
       }, 100 * index);
     });
-  }, []);
+  }, [mobileMenuVisible]);
 
   return (
-    <header className="bg-[#004d40]">
-      <nav className="container mx-auto flex justify-between items-center py-4 px-4">
-        {/* Left-side Navigation */}
-        <div className="flex space-x-6">
+    <header className="bg-[#004d40] shadow-md">
+      {/* Mobile Navigation (visible below sm breakpoint) */}
+      <nav className="sm:hidden container mx-auto p-4">
+        <div className="flex items-center justify-between">
+          {/* Hamburger Icon */}
+          <button
+            onClick={() => setMobileMenuVisible(!mobileMenuVisible)}
+            className="text-white focus:outline-none"
+          >
+            <svg
+              className="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {mobileMenuVisible ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 8h16M4 16h16"
+                />
+              )}
+            </svg>
+          </button>
+          {/* Brand */}
+          <div className="text-white text-xl font-bold">
+            Alumni Association
+          </div>
+          {/* Right: If logged in, show logout button */}
+          <div>
+            {userInfo && (
+              <button
+                onClick={LogoutHandler}
+                className="text-white font-bold focus:outline-none"
+              >
+                Logout
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Mobile Menu Links */}
+        {mobileMenuVisible && (
+          <div className="mt-4 bg-[#004d40] rounded shadow-md">
+            <ul className="animate-nav flex flex-col space-y-4 p-4">
+              <li>
+                <NavLink
+                  to="/"
+                  onClick={() => setMobileMenuVisible(false)}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-blue-50 underline text-lg font-bold transition duration-200"
+                      : "text-white text-lg font-bold transition duration-200 hover:text-blue-50"
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/eventposting"
+                  onClick={() => setMobileMenuVisible(false)}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-blue-50 underline text-lg font-bold transition duration-200"
+                      : "text-white text-lg font-bold transition duration-200 hover:text-blue-50"
+                  }
+                >
+                  Events
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/donation"
+                  onClick={() => setMobileMenuVisible(false)}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-blue-50 underline text-lg font-bold transition duration-200"
+                      : "text-white text-lg font-bold transition duration-200 hover:text-blue-50"
+                  }
+                >
+                  Donation
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/alljobs"
+                  onClick={() => setMobileMenuVisible(false)}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-blue-50 underline text-lg font-bold transition duration-200"
+                      : "text-white text-lg font-bold transition duration-200 hover:text-blue-50"
+                  }
+                >
+                  Jobs
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/batches"
+                  onClick={() => setMobileMenuVisible(false)}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-blue-50 underline text-lg font-bold transition duration-200"
+                      : "text-white text-lg font-bold transition duration-200 hover:text-blue-50"
+                  }
+                >
+                  Batches
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/getAllProjects"
+                  onClick={() => setMobileMenuVisible(false)}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-blue-50 underline text-lg font-bold transition duration-200"
+                      : "text-white text-lg font-bold transition duration-200 hover:text-blue-50"
+                  }
+                >
+                  Projects
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        )}
+      </nav>
+
+      {/* Desktop Navigation (visible at sm and above) */}
+      <nav className="hidden sm:flex container mx-auto items-center justify-between p-4">
+        {/* Left-side Navigation Links */}
+        <div className="flex items-center space-x-6 animate-nav">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -83,7 +213,7 @@ const LogoutHandler = async()=>{
             Home
           </NavLink>
           <NavLink
-            to="eventposting"
+            to="/eventposting"
             className={({ isActive }) =>
               isActive
                 ? "text-blue-50 underline text-lg font-bold transition duration-200"
@@ -93,7 +223,7 @@ const LogoutHandler = async()=>{
             Events
           </NavLink>
           <NavLink
-            to="donation"
+            to="/donation"
             className={({ isActive }) =>
               isActive
                 ? "text-blue-50 underline text-lg font-bold transition duration-200"
@@ -103,7 +233,7 @@ const LogoutHandler = async()=>{
             Donation
           </NavLink>
           <NavLink
-            to="alljobs"
+            to="/alljobs"
             className={({ isActive }) =>
               isActive
                 ? "text-blue-50 underline text-lg font-bold transition duration-200"
@@ -112,8 +242,6 @@ const LogoutHandler = async()=>{
           >
             Jobs
           </NavLink>
-         
-         
           <NavLink
             to="/batches"
             className={({ isActive }) =>
@@ -124,7 +252,6 @@ const LogoutHandler = async()=>{
           >
             Batches
           </NavLink>
-
           <NavLink
             to="/getAllProjects"
             className={({ isActive }) =>
@@ -133,9 +260,8 @@ const LogoutHandler = async()=>{
                 : "text-white text-lg font-bold transition duration-200 hover:text-blue-50"
             }
           >
-          Projects
+            Projects
           </NavLink>
-
         </div>
 
         {/* Right-side Authentication/Profile */}
@@ -177,10 +303,14 @@ const LogoutHandler = async()=>{
                   />
                 ) : (
                   <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
-                    <span className="text-lg text-gray-800">{userInfo.data.user.userName}</span>
+                    <span className="text-lg text-gray-800">
+                      {userInfo.data.user.userName[0]}
+                    </span>
                   </div>
                 )}
-                <span className="hidden sm:block">{userInfo.data.user.userName}</span>
+                <span className="hidden sm:block">
+                  {userInfo.data.user.userName}
+                </span>
               </button>
               {dropdownVisible && (
                 <div
@@ -197,12 +327,18 @@ const LogoutHandler = async()=>{
                         />
                       ) : (
                         <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center">
-                          <span className="text-xl text-gray-800">{userInfo.data.user.userName}</span>
+                          <span className="text-xl text-gray-800">
+                            {userInfo.data.user.userName[0]}
+                          </span>
                         </div>
                       )}
                       <div>
-                        <h3 className="font-bold text-gray-800 text-lg">{userInfo.data.user.userName}</h3>
-                        <p className="text-sm text-gray-600">{userInfo.email}</p>
+                        <h3 className="font-bold text-gray-800 text-lg">
+                          {userInfo.data.user.userName}
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                          {userInfo.data.user.email}
+                        </p>
                       </div>
                     </div>
                     {userInfo.data.user.role && (
@@ -213,13 +349,11 @@ const LogoutHandler = async()=>{
                     {userInfo.data.user.role === 'student' && (
                       <div className="mt-2">
                         <p className="text-sm text-gray-600">
-                          Skills: {userInfo.data.user.skills && userInfo.data.user.skills.length ? userInfo.data.user.skills.join(', ') : 'None'}
+                          Skills:{" "}
+                          {userInfo.data.user.skills && userInfo.data.user.skills.length
+                            ? userInfo.data.user.skills.join(", ")
+                            : "None"}
                         </p>
-                        {userInfo.interestedDomain && (
-                          <p className="text-sm text-gray-600">
-                            Interested Domain: {userInfo.interestedDomain}
-                          </p>
-                        )}
                       </div>
                     )}
                     {userInfo.data.user.role === 'alumni' && (
@@ -237,30 +371,32 @@ const LogoutHandler = async()=>{
                       </div>
                     )}
                   </div>
-
-
                   <div className="p-4 space-y-2">
-
                     <button
                       onClick={() => {
                         setDropdownVisible(false);
-                        navigate('getCurrentUser');
+                        navigate('/update-profile');
                       }}
                       className="w-full text-left px-4 py-2 font-semibold text-gray-800 rounded transition duration-200 hover:bg-blue-50 hover:text-blue-700"
                     >
                       Update Profile
                     </button>
-
                     <button
-                      onClick={ LogoutHandler}
+                      onClick={() => {
+                        setDropdownVisible(false);
+                        navigate('/dashboard');
+                      }}
+                      className="w-full text-left px-4 py-2 font-semibold text-gray-800 rounded transition duration-200 hover:bg-blue-50 hover:text-blue-700"
+                    >
+                      Dashboard
+                    </button>
+                    <button
+                      onClick={LogoutHandler}
                       className="w-full text-left px-4 py-2 font-semibold text-gray-800 rounded transition duration-200 hover:bg-blue-50 hover:text-blue-700"
                     >
                       Logout
                     </button>
-
                   </div>
-
-
                 </div>
               )}
             </div>
@@ -272,8 +408,3 @@ const LogoutHandler = async()=>{
 };
 
 export default Header;
-
-
-
-
-

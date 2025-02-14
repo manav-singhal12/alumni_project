@@ -73,7 +73,7 @@ const ChatPage = () => {
   const getReceivertUser = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5230/api/v1/users/getReceiverUser`,
+       ' http://localhost:5230/api/v1/users/getReceiverUser',
         { withCredentials: true }
       );
       console.log("Receiver User Data:", response.data);
@@ -86,7 +86,7 @@ const ChatPage = () => {
   const fetchMessages = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5230/api/messages/${userId}`,
+        'http://localhost:5230/api/messages/${userId}',
         { withCredentials: true }
       );
       console.log("Fetched Messages:", response.data);

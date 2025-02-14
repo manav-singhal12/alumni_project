@@ -1,16 +1,16 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { createBrowserRouter, createRoutesFromElements, Outlet } from 'react-router'
-import { Route } from 'react-router'
-import { RouterProvider } from 'react-router-dom'
-import {Provider} from 'react-redux'
-import store from './redux/store.js'
-import Login from './pages/authPages/Login.jsx'
-import LandingPage from './LandingPage/LandingPage.jsx'
-import Layout from './Layout.jsx'
-import Register from './pages/authPages/Register.jsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.jsx';
+import { createBrowserRouter, createRoutesFromElements, Outlet } from 'react-router';
+import { Route, Navigate, RouterProvider } from 'react-router-dom';
+import { Provider, useSelector } from 'react-redux';
+import store from './redux/store.js';
+
+import Login from './pages/authPages/Login.jsx';
+import LandingPage from './LandingPage/LandingPage.jsx';
+import Layout from './Layout.jsx';
+import Register from './pages/authPages/Register.jsx';
 
 import GetAllJobs from './pages/jobsPage/GetAllJobs.jsx'
 import UserDashboard from './pages/UserDashboard.jsx'
@@ -21,11 +21,11 @@ import EventPosting from './pages/eventsPage/EventPosting.jsx'
 import ShowProjects from './pages/projectPages/ShowProjects.jsx'
 // import GetAllEvents from './pages/eventsPage/GetAllEvents.jsx'
 import UpdateUserProfile from './pages/updateProfile/UpdateUserProfile.jsx'
-import Donation from './pages/Payment/Donation.jsx'
+// import Donation from '../src/pages/Donation.jsx'
 
 import BatchUsers from './pages/BatchUsers.jsx'
 
-// import Donations from './pages/Donations.jsx'
+import Donations from './pages/Donations.jsx'
 
 
 import ChatPage from '../../frontend/src/components/ChatPage.jsx'
@@ -59,26 +59,20 @@ const router = createBrowserRouter(
 
 
       <Route path="/chat/:userId" element={<ChatPage />} />
-      <Route path="donation" element={<Donation />} />
-
+      <Route path="donation" element={<Donations />} />
+      <Route path="/donations/solana" element={<SolanaTransaction />} />
+        <Route path="/donations/razorpay" element={<RazorpayTransaction />} />
+        <Route path="/batch/:batchName" element={<BatchUsers />} />
 
     </Route>
   )
-)
+);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <Provider store={store}>
-    <App/>
-   <RouterProvider router={router}/>
-   </Provider>
-  </StrictMode>,
-)
-
-
-
-
-
-
-
-
+    <Provider store={store}>
+      <App />
+      <RouterProvider router={router} />
+    </Provider>
+  </StrictMode>
+);
