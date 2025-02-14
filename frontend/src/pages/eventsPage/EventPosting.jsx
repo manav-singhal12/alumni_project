@@ -6,6 +6,7 @@ import {useNavigate } from "react-router-dom"
 import {toast} from 'react-toastify'
 import { useSelector } from "react-redux";
 import { useGetEventsQuery } from "../../redux/api/events.ApiSlice.js";
+import EventCard from './EventCard.jsx'
 
 function EventPosting() {
 
@@ -217,24 +218,6 @@ function EventPosting() {
 
               </div>
 
-              {/* <div>
-                <label
-                  htmlFor="image"
-                  className="block text-gray-700 font-medium mb-2"
-                >
-                  Image URL
-                </label>
-                <input
-                  type=""
-                  id="image"
-                  name="image"
-                  value={newEvent.image}
-                  onChange={(e)=>(e.target.value)}
-                  placeholder="https://example.com/event.jpg"
-                  className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#004d40]"
-                />
-              </div> */}
-
 
 
               <button
@@ -248,73 +231,17 @@ function EventPosting() {
         )}
 
 
-
-
-        
-
-
-       
        
         {/* Display Events Grid */}
     
-      
-      
-      
-      
-      
-          {/* <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event) => (
-            <div
-              key={event.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 relative"
-            >
-              <img
-                src={event.image || '/images/default_event.jpg'}
-                alt={event.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h2 className="text-2xl font-bold text-gray-800">
-                  {event.title}
-                </h2>
-                <p className="text-gray-600 mt-2">{event.about}</p>
-                <div className="mt-4">
-                  <span className="block text-gray-700 font-medium">
-                    Date: {event.date}
-                  </span>
-                  <span className="block text-gray-700 font-medium">
-                    Location: {event.location}
-                  </span>
-                </div> */}
-                {/* Show delete button if this event was posted by the logged-in user */}
-                 {/* {user && event.postedBy === user.email && (
-                  <button
-                    onClick={() => handleDeleteEvent(event.id)}
-                    className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-300"
-                  >
-                    Delete
-                  </button>
-                )}
-              </div>
 
-              {/* Joining Link (Only for Online Events) */}
-              {/* {x.eventMode === "online" && x.joiningLink && (
-                <a
-                  href={x.joiningLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-[#004d40] font-semibold hover:underline"
-                >
-                  Join Event
-                </a>
-              )}
-            </div>
-          ))} 
-          </section>  */}
-          
-
-
-
+        <div className="min-h-screen bg-gradient-to-r  p-3 rounded-md mx-auto">
+      <div className="space-y-8 max-w-6xl mx-auto md:grid md:grid-cols-3  ">
+        { eventData?.data.map((event, index) => (
+          <EventCard key={index} event={event} />
+        ))}
+      </div>
+    </div>
 
         
       </div>
