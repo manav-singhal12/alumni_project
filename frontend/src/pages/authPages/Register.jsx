@@ -179,9 +179,9 @@ const addintrests =(e)=>{
       </div>  
 
       <div>
-            <label htmlFor="intrests" className="block font-semibold text-gray-700">Skills</label>
+            <label htmlFor="intrests" className="block font-semibold text-gray-700">Interests</label>
             <div className="flex gap-2 mt-1">
-              <input type="text" id="intrests" name="intrests" value={intrestsInput} onChange={(e) => setintrestsInput(e.target.value)} placeholder="Enter a skill" className="w-full p-3 border rounded-lg focus:outline-none focus:border-[#004d40]" />
+              <input type="text" id="intrests" name="intrests" value={intrestsInput} onChange={(e) => setintrestsInput(e.target.value)} placeholder="Enter your interests" className="w-full p-3 border rounded-lg focus:outline-none focus:border-[#004d40]" />
               <button onClick={addintrests} className="bg-[#004d40] text-white p-3 rounded-lg">
                 Add
               </button>
