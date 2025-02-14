@@ -13,15 +13,20 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import userRoutes from './routes/user.routes.js';
 dotenv.config({ path: "../.env" });
-
+import cors from "cors";
 // Initialize the HTTP Server and Socket.io
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://alumni-project-qwg6.vercel.app/"
+    ],
+    methods: ["GET", "POST"],
     credentials: true,
-  },
+  }
 });
+
 
 
 // Export `io` so it can be used in other files

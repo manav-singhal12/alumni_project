@@ -16,12 +16,33 @@ const app = express()
 //     methods: ["GET", "POST"]
 // }));
 
-app.use(cors({
-    origin: process.env.CORS_ORIGIN || "http://localhost:5173", // Your frontend URL
-    credentials: true, // Allow sending cookies and authentication headers
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-}));
+// app.use(cors({
+//     origin: [
+//         "http://localhost:5173",  // Local development
+//         "https://alumni-project-qwg6.vercel.app" // Deployed frontend
+//     ],
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+// }));
+app.use(
+    cors({
+        origin: "*",  // Allow all origins
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        credentials: true, // Enable credentials (only works if origin is NOT "*")
+        allowedHeaders: ["Content-Type", "Authorization"],
+    })
+);
+
+  
+//   app.use(
+//     cors({
+//       origin: allowedOrigins,
+//       methods: ["GET", "POST", "PUT", "DELETE"],
+//       credentials: true, // If you're using cookies or authentication
+//     })
+//   );
+
 app.use(express.json({limit:"500kb"}))
 app.use(express.urlencoded({extended:true ,limit:"500kb"}))
 app.use(express.static("public")) 
