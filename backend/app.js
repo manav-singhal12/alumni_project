@@ -17,7 +17,7 @@ const app = express()
 // }));
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN || "http://localhost:5173", // Your frontend URL
+    origin: process.env.CORS_ORIGIN || "https://alumni-project-qwg6.vercel.app/", // Your frontend URL
     credentials: true, // Allow sending cookies and authentication headers
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
