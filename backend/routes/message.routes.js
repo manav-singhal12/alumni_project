@@ -11,3 +11,4 @@ router.post("/", verifyJWT, sendMessage);
 router.get("/:userId", verifyJWT, getMessages);
 
 export default router;
+
