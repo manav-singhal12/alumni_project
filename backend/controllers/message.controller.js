@@ -9,7 +9,7 @@ export const sendMessage = asyncHandler(async (req, res) => {
 
   const { recipientId, text } = req.body;
   const sender = req.user?._id;
-
+  
   if (!sender) {
     throw new ApiError(401, "Unauthorized: User not authenticated");
   }

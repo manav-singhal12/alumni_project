@@ -201,3 +201,98 @@ if(userInfo){
 };
 
 // export default Login;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // src/pages/Login.jsx
+// import React, { useState, useContext } from 'react';
+// import { Link, useNavigate } from 'react-router-dom';
+// import { AuthContext } from '../context/AuthContext';
+
+// const Login = () => {
+//   const { login } = useContext(AuthContext);
+//   const navigate = useNavigate();
+  
+//   const [formData, setFormData] = useState({ email: '', password: '' });
+//   const [error, setError] = useState('');
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData((prev) => ({ ...prev, [name]: value }));
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     const success = login(formData);
+//     if (success) {
+//       // Redirect to the profile dashboard instead of home
+//       navigate('/profile');
+//     } else {
+//       setError('Invalid email or password.');
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen flex items-center justify-center bg-[#e0f2f1] p-4">
+//       <div className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full">
+//         <h2 className="text-2xl font-bold text-[#004d40] mb-6 text-center">Login</h2>
+//         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
+//         <form onSubmit={handleSubmit} className="space-y-4 text-left">
+//           <div>
+//             <label htmlFor="email" className="block font-semibold text-gray-700">Email</label>
+//             <input
+//               type="email"
+//               id="email"
+//               name="email"
+//               value={formData.email}
+//               onChange={handleChange}
+//               required
+//               className="w-full p-3 border rounded-lg mt-1 focus:outline-none focus:border-[#004d40]"
+//             />
+//           </div>
+//           <div>
+//             <label htmlFor="password" className="block font-semibold text-gray-700">Password</label>
+//             <input
+//               type="password"
+//               id="password"
+//               name="password"
+//               value={formData.password}
+//               onChange={handleChange}
+//               required
+//               className="w-full p-3 border rounded-lg mt-1 focus:outline-none focus:border-[#004d40]"
+//             />
+//           </div>
+//           <button
+//             type="submit"
+//             className="w-full p-3 bg-[#004d40] text-white rounded-lg uppercase font-semibold hover:bg-[#00332a] transition"
+//           >
+//             Login
+//           </button>
+//         </form>
+//         <p className="mt-4 text-gray-600 text-center">
+//           Don't have an account?{' '}
+//           <Link to="/register" className="text-[#004d40] font-semibold hover:underline">
+//             Register
+//           </Link>
+//         </p>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Login;

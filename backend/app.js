@@ -50,6 +50,9 @@ app.use("/api/v1/events" ,eventRouter)
 import projectRouter from './routes/projects.routes.js'
 app.use("/api/v1/projects",projectRouter)
 
+// import paymentRoutes from './routes/payment.routes.js'
+// app.use("/api/payments",paymentRoutes)/
+
 app.options('*', cors());
 
 
