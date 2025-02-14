@@ -12,7 +12,7 @@ const BatchUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`http://localhost:5230/api/users`);
+        const response = await fetch(`https://alumni-project-3.onrender.com/api/users`);
         const data = await response.json();
 console.log(data);
 console.log(batchName);
