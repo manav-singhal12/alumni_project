@@ -35,13 +35,13 @@ app.use(
 );
 
   
-  app.use(
-    cors({
-      origin: allowedOrigins,
-      methods: ["GET", "POST", "PUT", "DELETE"],
-      credentials: true, // If you're using cookies or authentication
-    })
-  );
+//   app.use(
+//     cors({
+//       origin: allowedOrigins,
+//       methods: ["GET", "POST", "PUT", "DELETE"],
+//       credentials: true, // If you're using cookies or authentication
+//     })
+//   );
 
 app.use(express.json({limit:"500kb"}))
 app.use(express.urlencoded({extended:true ,limit:"500kb"}))
