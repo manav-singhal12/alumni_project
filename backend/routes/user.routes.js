@@ -11,6 +11,7 @@ import {getAllJobs, PostJob} from '../controllers/job.controller.js'
 import { upload } from "../middlewares/multer.middleware.js";
 import { authorizeAlumni, verifyJWT } from "../middlewares/auth.middleware.js";
 import {User} from '../models/user.model.js';
+import { sendPayment } from "../controllers/payment.controller.js";
 
 
 const router = Router();
@@ -21,6 +22,7 @@ router.route("/register").post(upload.single("avatar"),userRegistration)
     router.route('/logout').post(verifyJWT , Logout)
   router.route('/getCurrentUser').get(verifyJWT , getCurrentUser)
   router.route('/updateUserDetail').put(verifyJWT , updateUserDetail)
+//   router.route('/getnewpayment').post(verifyJWT,sendPayment)
   router.get("/users", async (req, res) => {
     try {
         const users = await User.find({}, "-password"); // Exclude password for security

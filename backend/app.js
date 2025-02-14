@@ -50,6 +50,9 @@ app.use("/api/v1/events" ,eventRouter)
 import projectRouter from './routes/projects.routes.js'
 app.use("/api/v1/projects",projectRouter)
 
+import paymentRouter from './routes/payment.routes.js'
+app.use("/api/v1/payment", paymentRouter)
+
 // import paymentRoutes from './routes/payment.routes.js'
 // app.use("/api/payments",paymentRoutes)/
 
