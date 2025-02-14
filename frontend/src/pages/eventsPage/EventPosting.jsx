@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {useEventPostMutation} from '../../redux/api/events.ApiSlice.js'
-import { redirect, useNavigate } from "react-router";
+import { redirect, } from "react-router";
+import {useNavigate } from "react-router-dom"
 import Loader from '../../components/Loader.jsx'
 import {toast} from 'react-toastify'
 import { useSelector } from "react-redux";
@@ -14,7 +15,8 @@ function EventPosting() {
   const [title, setTitle] = useState("");
   const [about, setAbout] = useState("");
   const [organiser, setOrganiser] = useState("");
-  const [date ,setDate]= useState("")
+  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+
   const [eventMode, setEventMode] = useState("online");
   const [joiningLink, setJoiningLink] = useState("");
 
@@ -22,17 +24,17 @@ function EventPosting() {
 
   // console.log(postEvent)
   const navigate =useNavigate();
-  const { data: events, error, isSuccess, isError } = useGetEventsQuery();
+  const { data:eventData, error, isSuccess, isError } = useGetEventsQuery();
+  // console.log("the first event is",events[0]);
 
-  
-  console.log("the events are",events)
-  console.log(error);
+  console.log(eventData)
+  console.log("the events are", eventData?.data.length || 0);
+
+ 
   console.log(isSuccess);
   console.log(isError)
   
   
-
-
   const handleSubmit = async(e) => {
     e.preventDefault();
     const eventData = {
@@ -47,7 +49,7 @@ function EventPosting() {
       const result = await postEvent(eventData).unwrap();
       if(result){
         toast.success("event posted successFully! ✅");
-        navigate('/getallevents')
+      
       }
       
     } catch (error) {
@@ -59,7 +61,7 @@ function EventPosting() {
           
               if (isHtml) {
                
-                const match = error.data.match(/Error:\s(.*?)<br>/);
+                const match = error.data.match(/Error:\s(.*?)<br>/);  
                 if (match) {
                   errorMessage = match[1]; 
                 }
@@ -73,127 +75,9 @@ function EventPosting() {
     }
 
   };
-
-//   return (
-
-//     <div className="max-w-3xl mx-auto p-8 bg-white shadow-lg rounded-lg border border-gray-200">
-//       <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">Post an Event</h2>
-//       <form onSubmit={handleSubmit} className="space-y-4">
-//         <input
-//           type="text"
-//           placeholder="Event Title"
-//           value={title}
-//           onChange={(e) => setTitle(e.target.value)}
-//           className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-//           required
-//         />
-//         <textarea
-//           placeholder="About the Event"
-//           value={about}
-//           onChange={(e) => setAbout(e.target.value)}
-//           className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-//           required
-//         ></textarea>
-//         <input
-//           type="text"
-//           placeholder="Organiser Name"
-//           value={organiser}
-//           onChange={(e) => setOrganiser(e.target.value)}
-//           className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-//           required
-//         />
-//         <select
-//           value={eventMode}
-//           onChange={(e) => setEventMode(e.target.value)}
-//           className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-//         >
-//           <option value="online">online</option>
-//           <option value="offline">offline</option>
-//         </select>
-//         <input
-//           type="url"
-//           placeholder="Joining Link (if Online)"
-//           value={joiningLink}
-//           onChange={(e) => setJoiningLink(e.target.value)}
-//           className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-//         />
-//         <button
-//           type="submit"
-//           className="w-full bg-blue-600 text-white font-semibold p-3 rounded-lg hover:bg-blue-700 transition"
-//         >
-//           Post Event
-//         </button>
-//       </form>
-//       {isLoading && <Loader/>}
-//     </div>
-//   );
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // State for events
-  // const [events, setEvents] = useState(loadEvents();
-  // Toggle for showing the post-event form
- 
- 
  
   const [showPostForm, setShowPostForm] = useState(false);
  
-
-
- 
-  // Handle changes in the post-event form
-  // const handleNewEventChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setNewEvent((prev) => ({ ...prev, [name]: value }));
-  // };
-
-  // Handle posting a new event
-  // const handlePostEvent = (e) => {
-  //   e.preventDefault();
-    // Compute a new unique id
-    // const newId =
-    //   events.length > 0 ? Math.max(...events.map((ev) => ev.id)) + 1 : 1;
-    // Add a postedBy field (if the user is logged in)
-    // const eventToAdd = {
-    //   ...newEvent,
-    //   id: newId,
-    //   postedBy: user ? user.email : null,
-    // };
-    // setEvents([...events, eventToAdd]);
-    // Reset the form and hide it
-  
-  //   setShowPostForm(false);
-  // };
-
-  // Handle deletion of an event by id with confirmation
-
-
-  // const handleDeleteEvent = (id) => {
-  //   // Ask the user for confirmation before deletion
-  //   const confirmed = window.confirm(
-  //     'Are you sure you want to delete this event?'
-  //   );
-  //   if (confirmed) {
-  //     setEvents(events.filter((ev) => ev.id !== id));
-  //   }
-  // };
-
-
-
   return (
     <main className="p-6 bg-[#e0f2f1] min-h-screen">
       <div className="container mx-auto">
@@ -220,6 +104,7 @@ function EventPosting() {
             </button>
           </div>
         )}
+
 
         {/* Post Event Form */}
 
@@ -298,16 +183,19 @@ function EventPosting() {
 
                 <div>
                   <label htmlFor="eventMode" className="block text-gray-700 font-medium mb-2">  event mode </label>
-                  <input
-                    type="text"
-                    id="eventMode"
-                    name="eventMode"
-                    value={eventMode}
-                    onChange={(e)=>setEventMode(e.target.value)}
-                    required
-                    className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#004d40]"
-                    placeholder="offline or onlie"
-                  />
+
+                   <select
+                          id="eventMode"
+                          name="eventMode"
+                          value={eventMode}
+                          onChange={(e) => setEventMode(e.target.value)}
+                          required
+                          className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-[#004d40]"
+                        >
+                          <option value="online">Online</option>
+                          <option value="offline">Offline</option>
+                     </select>
+
                 </div>
 
 
@@ -359,52 +247,69 @@ function EventPosting() {
           </div>
         )}
 
+
+
+
+        
+
+
        
        
         {/* Display Events Grid */}
       
-      
-      
-      
-      
-          {/* <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event) => (
-            <div
-              key={event.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 relative"
-            >
-              <img
-                src={event.image || '/images/default_event.jpg'}
-                alt={event.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h2 className="text-2xl font-bold text-gray-800">
-                  {event.title}
-                </h2>
-                <p className="text-gray-600 mt-2">{event.about}</p>
-                <div className="mt-4">
-                  <span className="block text-gray-700 font-medium">
-                    Date: {event.date}
-                  </span>
-                  <span className="block text-gray-700 font-medium">
-                    Location: {event.location}
-                  </span>
-                </div> */}
-                {/* Show delete button if this event was posted by the logged-in user */}
-                 {/* {user && event.postedBy === user.email && (
-                  <button
-                    onClick={() => handleDeleteEvent(event.id)}
-                    className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-300"
-                  >
-                    Delete
-                  </button>
-                )}
+        <div className="p-6 bg-[#e0f2f1] min-h-screen">
+      <div className="container mx-auto">
+        {/* <header className="text-center mb-10">
+          <h1 className="text-4xl font-extrabold text-gray-800">Upcoming Events</h1>
+          <p className="mt-2 text-lg text-gray-600">Stay updated with our latest events and activities!</p>
+        </header> */}
+
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {eventData?.data?.map((x) => ( 
+            <div key={x._id} className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300">
+              {/* Event Mode Badge */}
+              <span
+                className={`inline-block px-3 py-1 text-sm font-semibold text-white rounded-full mb-3 ${
+                  x.eventMode === "online" ? "bg-green-500" : "bg-blue-500"
+                }`}
+              >
+                {x.eventMode.toUpperCase()}
+              </span>
+
+              {/* Event Title */}
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">{x.title}</h2>
+
+              {/* Event Details */}
+              <p className="text-gray-700 text-sm mb-3">{x.about}</p>
+
+              {/* Organizer & Date */}
+              <div className="text-sm text-gray-600 mb-3">
+                <p><strong>Organizer:</strong> {x.organiser}</p>
+                <p><strong>Date:</strong> {new Date(x.date).toLocaleDateString()}</p>
               </div>
+
+              {/* Joining Link (Only for Online Events) */}
+              {x.eventMode === "online" && x.joiningLink && (
+                <a
+                  href={x.joiningLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-[#004d40] font-semibold hover:underline"
+                >
+                  Join Event
+                </a>
+              )}
             </div>
-          ))} 
-          </section>  */}
+          ))}
+        </div>
+      </div>
+    </div>
+      
+        
+
           
+
+
 
 
 
