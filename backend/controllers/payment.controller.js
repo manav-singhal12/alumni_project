@@ -1,7 +1,7 @@
 import { Transaction } from "../models/payment.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
-import { ApiResponse } from "../utils/ApiResponse.js";
+import { ApiResponse } from "../utils/Apiresponse.js";
 // import exp from "constants";
 import {User} from '../models/user.model.js'
 

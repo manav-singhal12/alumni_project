@@ -6,7 +6,7 @@ const transactionSchema = new mongoose.Schema({
   recipientId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   recipientEmail: { type: String, required: true },
   amount: { type: Number, required: true },
-  mode: { type: String, enum: ["UPI", "Bank-Transfer", "Credit-Card"], required: true },
+  mode: { type: String,  required: true },
   timestamp: { type: Date, default: Date.now }
 });
 
