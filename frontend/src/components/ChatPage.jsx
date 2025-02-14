@@ -14,7 +14,6 @@ const ChatPage = () => {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
-
   useEffect(() => {
     getCurrentUser();
     fetchMessages();
