@@ -44,6 +44,8 @@ const router = createBrowserRouter(
       <Route path='eventposting' element={<EventPosting/>}/>
       <Route path='getAllProjects' element={<ShowProjects/>}/>
       <Route path='updateProfile' element={<UpdateUserProfile/>}/>
+      {/* <Route path="/update-profile" element={<UpdateProfile />} />
+          <Route path="/dashboard" element={<Dashboard />} /> */}
       <Route path='projectposting' element={<OpenSourceProjectPosting/>}/>
 
       <Route path="/chat/:userId" element={<ChatPage />} />
