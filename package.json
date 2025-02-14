@@ -13,7 +13,7 @@
     "backend": "nodemon -r dotenv/config --experimental backend/index.js",
     "frontend": "npm run dev --prefix frontend",
     "dev": "concurrently \"npm run frontend\" \"npm run backend\""
-  },
+  },  
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
     "@shadcn/ui": "^0.0.4",
