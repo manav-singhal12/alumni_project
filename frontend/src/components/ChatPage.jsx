@@ -12,7 +12,6 @@ const ChatPage = () => {
   const [currentUserId, setCurrentUserId] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const messagesEndRef = useRef(null);
-
   useEffect(() => {
     getCurrentUser();
     fetchMessages(); // Fetch messages on component mount
