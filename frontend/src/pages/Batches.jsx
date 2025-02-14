@@ -49,7 +49,7 @@ const Batches = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-100 to-gray-200 p-6">
       <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-8 drop-shadow-lg">
-        Select a Batch
+        Select a Batch  
       </h1>
   
       <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
