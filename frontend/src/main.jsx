@@ -21,11 +21,11 @@ import EventPosting from './pages/eventsPage/EventPosting.jsx'
 import ShowProjects from './pages/projectPages/ShowProjects.jsx'
 // import GetAllEvents from './pages/eventsPage/GetAllEvents.jsx'
 import UpdateUserProfile from './pages/updateProfile/UpdateUserProfile.jsx'
-import Donation from '../src/pages/Donation.jsx'
+import Donation from './pages/Payment/Donation.jsx'
 
 import BatchUsers from './pages/BatchUsers.jsx'
 
-import Donations from './pages/Donations.jsx'
+// import Donations from './pages/Donations.jsx'
 
 
 import ChatPage from '../../frontend/src/components/ChatPage.jsx'
@@ -59,10 +59,8 @@ const router = createBrowserRouter(
 
 
       <Route path="/chat/:userId" element={<ChatPage />} />
-      <Route path="donation" element={<Donations />} />
-      <Route path="/donations/solana" element={<SolanaTransaction />} />
-        <Route path="/donations/razorpay" element={<RazorpayTransaction />} />
-        <Route path="/batch/:batchName" element={<BatchUsers />} />
+      <Route path="donation" element={<Donation />} />
+
 
     </Route>
   )
