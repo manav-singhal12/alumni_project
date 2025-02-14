@@ -12,7 +12,7 @@ const router = Router();
 
 
   router.route('/eventposting').post(verifyJWT , authorizeAlumni ,eventPost)
-  router.route('/allevents').get(getAllEvents)
+  router.route('/getEvents').get(getAllEvents)
   
 
 export default router
