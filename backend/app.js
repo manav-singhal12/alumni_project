@@ -28,8 +28,8 @@ const app = express()
 const allowedOrigins = [
     "http://localhost:5173", // Local development
     "https://alumni-project-qwg6.vercel.app", // Deployed frontend
-    "https://alumni-delta.vercel.app",
-    "https://alumni-project-3.onrender.com", // Backend URL
+    "https://alumni-project-my1e.vercel.app/",
+    "https://alumni-project-i1qf.onrender.com", // Backend URL
   ];
   
   app.use(
