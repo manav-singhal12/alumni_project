@@ -17,12 +17,16 @@ import UserDashboard from './pages/UserDashboard.jsx'
 import Batches from './pages/Batches.jsx'
 
 import EventPosting from './pages/eventsPage/EventPosting.jsx'
-import OpenSourceProjectPosting from './pages/projectPages/OpenSourceProjectPosting.jsx'
+// import OpenSourceProjectPosting from './pages/projectPages/OpenSourceProjectPosting.jsx'
 import ShowProjects from './pages/projectPages/ShowProjects.jsx'
-import GetAllEvents from './pages/eventsPage/GetAllEvents.jsx'
+// import GetAllEvents from './pages/eventsPage/GetAllEvents.jsx'
 import UpdateUserProfile from './pages/updateProfile/UpdateUserProfile.jsx'
+import Donation from '../src/pages/Donation.jsx'
 
-import Donation from './pages/Donation.jsx'
+
+
+import Donations from './pages/Donations.jsx'
+
 
 import ChatPage from '../../frontend/src/components/ChatPage.jsx'
 
@@ -40,16 +44,20 @@ const router = createBrowserRouter(
       <Route path='batches' element={<Batches/>}/>
 
       <Route path="/chat/:userId" element={<ChatPage/>} />
- <Route path='getallevents' element={<GetAllEvents/>}/>
+ {/* <Route path='getallevents' element={<GetAllEvents/>}/> */} 
       <Route path='eventposting' element={<EventPosting/>}/>
       <Route path='getAllProjects' element={<ShowProjects/>}/>
       <Route path='updateProfile' element={<UpdateUserProfile/>}/>
+
+      {/* <Route path='projectposting' element={<OpenSourceProjectPosting/>}/> */}
+
       {/* <Route path="/update-profile" element={<UpdateProfile />} />
           <Route path="/dashboard" element={<Dashboard />} /> */}
       <Route path='projectposting' element={<OpenSourceProjectPosting/>}/>
 
+
       <Route path="/chat/:userId" element={<ChatPage />} />
-      <Route path="donation" element={<Donation />} />
+      <Route path="donation" element={<Donations />} />
 
 
     </Route>
@@ -72,44 +80,3 @@ createRoot(document.getElementById('root')).render(
 
 
 
-
-// routes
-
-
-
-// import React from 'react';
-// import { Routes, Route } from 'react-router-dom';
-// import Home from './pages/Home';
-// import Events from './pages/Events';
-// import Donation from './pages/Donation';
-// import JobPortal from './pages/Jobportal';
-// import Login from './pages/Login';
-// import Register from './pages/Register';
-// import Header from './components/Header';
-// import Footer from './components/Footer';
-// import Profile from './components/Profile';
-// import Batches from './pages/Batches';
-
-// function App() {
-//   return (
-//     <div className="flex flex-col min-h-screen">
-//       <Header />
-//       <main className="flex-grow">
-//         <Routes>
-//           <Route path="/" element={<Home />} />
-//           <Route path="/events" element={<Events />} />
-//           <Route path="/donation" element={<Donation />} />
-//           <Route path="/jobportal" element={<JobPortal />} />
-//           <Route path="/login" element={<Login />} />
-//           <Route path="/register" element={<Register />} />
-//           <Route path="/profile" element={<Profile />} />
-//           <Route path="/batches" element={<Batches />} />
-
-//         </Routes>
-//       </main>
-//       <Footer />
-//     </div>
-//   );
-// }
-
-// export default App;

@@ -2,6 +2,7 @@ import { useEffect ,useState} from "react";
 import { useJobPostingMutation } from "../../redux/api/jobs.ApiSlice.js";
 import {useAllJobsQuery} from '../../redux/api/jobs.ApiSlice.js'
 import { useSelector } from "react-redux";
+import JobCard from './JobCard.jsx'
 
 import Loader from "../../components/Loader.jsx";
 import { toast } from "react-toastify";
@@ -15,7 +16,7 @@ function GetAllJobs() {
   const { data: jobs, error } = useAllJobsQuery();
 
 // jobs.length=0;
-    console.log(jobs)
+    console.log("the jobs are " ,jobs)
     // console.log("the length is ",jobs.length)
 
     const [postJob ,{isLoading} ] = useJobPostingMutation(); 
@@ -29,6 +30,7 @@ function GetAllJobs() {
     const [description, setDescription] = useState("");
     const [requirements, setRequirements] = useState("");
     const [salary, setSalary] = useState("");
+    const [buttonColor, setButtonColor] = useState(false)
 
 
 
@@ -155,11 +157,11 @@ function GetAllJobs() {
         {/* Job Posting Section */}
     {userInfo ? (
         userInfo.data.user.role === "alumni" ? (
-          <section id="post-job" className="mb-10 bg-white p-3 rounded-lg shadow-md text-center w-7xl">
+          <section id="post-job" className={`mb-10 bg-white p-3 rounded-lg shadow-md text-center `}>
             {!showForm ? (
               <button
                 onClick={handleToggleForm}
-                className="w-6xl h-16 px-6 py-3 bg-[#004d40] text-white font-semibold rounded hover:bg-[#00796b] transition duration-300"
+                className=" h-16 px-6 py-3 w-76 md:w-6xl lg:w-6xl bg-[#004d40] text-white font-semibold rounded hover:bg-[#00796b] transition duration-300"
               >
                 Post a Job
               </button>
@@ -311,7 +313,7 @@ function GetAllJobs() {
 
 
         {/* Job Listings Section */}
-        <section id="job-listings" className="mb-10">
+        {/* <section id="job-listings" className="mb-10">
   <h2 className="text-2xl font-bold mb-4 text-gray-800">Jobs</h2>
 
   {/* Loading State */}
@@ -326,7 +328,7 @@ function GetAllJobs() {
   )}
 
   {/* Job Listings Grid */}
-  {!isLoading && !error && jobs?.length > 0 && (
+  {/* {!isLoading && !error && jobs?.length > 0 && (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {jobs.map((job, index) => (
         <article
@@ -367,12 +369,23 @@ function GetAllJobs() {
         </article>
       ))}
     </div>
-  )}
-</section>
+  )} */}
+              {/* </section>  */}
 
 
 
     {/* {job listing ends here } */}
+
+
+
+    <div className="container mx-auto px-4 py-8">
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Job Listings</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {jobs?.map((job) => (
+          <JobCard key={job.id} job={job} />
+        ))}
+      </div>
+    </div>
 
 
 

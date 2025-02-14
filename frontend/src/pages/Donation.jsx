@@ -112,74 +112,74 @@ const Donation = () => {
     }
   };
 
-  const createRazorpayOrder = (amount) => {
-    let data = JSON.stringify({ amount: amount * 100, currency: "INR" });
+    const createRazorpayOrder = (amount) => {
+      let data = JSON.stringify({ amount: amount * 100, currency: "INR" });
 
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "http://localhost:5230/orders",
-      headers: { 'Content-Type': 'application/json' },
-      data: data
+      let config = {
+        method: "post",
+        maxBodyLength: Infinity,
+        url: "http://localhost:5230/orders",
+        headers: { 'Content-Type': 'application/json' },
+        data: data
+      };
+
+      axios.request(config)
+        .then((response) => {
+          console.log(JSON.stringify(response.data));
+          handleRazorpayScreen(response.data.amount);
+        })
+        .catch((error) => {
+          console.log("error at", error);
+        });
     };
-
-    axios.request(config)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-        handleRazorpayScreen(response.data.amount);
-      })
-      .catch((error) => {
-        console.log("error at", error);
+    const loadScript = (src) => {
+      return new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.src = src;
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        document.body.appendChild(script);
       });
-  };
-  const loadScript = (src) => {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
-      document.body.appendChild(script);
-    });
-  };
-
-  const handleRazorpayScreen = async (amount) => {
-    const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
-
-    if (!res) {
-      alert("Error loading Razorpay checkout.");
-      return;
-    }
-
-    const razorpayKey = import.meta.env.VITE_RAZORPAY_KEY;
-    if (!razorpayKey) {
-      console.error("Razorpay Key is missing in .env file");
-      setStatus("Razorpay Key is not set!");
-      return;
-    }
-
-    const options = {
-      key: razorpayKey,
-      amount: amount, // Convert to paise
-      currency: "INR",
-      name: "Student Name",
-      description: "Payment for donation",
-      image: "https://your-logo-url.com/logo.png",
-      handler: function (response) {
-        setResponseId(response.razorpay_payment_id);
-        console.log("Payment successful! ID:", response.razorpay_payment_id);
-      },
-      prefill: {
-        name: name,
-        email: email
-      },
-      theme: { color: "#F4C430" }
     };
 
-    const paymentObject = new window.Razorpay(options);
-    paymentObject.open();
-    // navigate('/donations'); 
+    const handleRazorpayScreen = async (amount) => {
+      const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
 
-  };
+      if (!res) {
+        alert("Error loading Razorpay checkout.");
+        return;
+      }
+
+      const razorpayKey = import.meta.env.VITE_RAZORPAY_KEY;
+      if (!razorpayKey) {
+        console.error("Razorpay Key is missing in .env file");
+        setStatus("Razorpay Key is not set!");
+        return;
+      }
+
+      const options = {
+        key: razorpayKey,
+        amount: amount, // Convert to paise
+        currency: "INR",
+        name: "Student Name",
+        description: "Payment for donation",
+        image: "https://your-logo-url.com/logo.png",
+        handler: function (response) {
+          setResponseId(response.razorpay_payment_id);
+          console.log("Payment successful! ID:", response.razorpay_payment_id);
+        },
+        prefill: {
+          name: name,
+          email: email
+        },
+        theme: { color: "#F4C430" }
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+      // navigate('/donations'); 
+
+    };
 
   return (
     <div >
