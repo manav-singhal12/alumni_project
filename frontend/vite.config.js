@@ -7,7 +7,10 @@ export default defineConfig({
   plugins: [react(),tailwindcss()],
   server:{
     proxy:{
-      "/api":"http://localhost:5230/"
+      "/api":"https://alumni-project-3.onrender.com/",
+      "/socket.io":"https://alumni-project-3.onrender.com/",
+      "/server":" https://alumni-project-qwg6.vercel.app/",
+      //
     }
   }
 })
