@@ -25,10 +25,15 @@ const app = express()
 //     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 //     allowedHeaders: ["Content-Type", "Authorization"],
 // }));
-const allowedOrigins = [
-    "http://localhost:5173", // Local development
-    "https://alumni-project-qwg6.vercel.app/" // Deployed frontend
-  ];
+app.use(
+    cors({
+        origin: "*",  // Allow all origins
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        credentials: true, // Enable credentials (only works if origin is NOT "*")
+        allowedHeaders: ["Content-Type", "Authorization"],
+    })
+);
+
   
   app.use(
     cors({
