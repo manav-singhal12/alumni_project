@@ -23,12 +23,14 @@ import ShowProjects from './pages/projectPages/ShowProjects.jsx'
 import UpdateUserProfile from './pages/updateProfile/UpdateUserProfile.jsx'
 import Donation from '../src/pages/Donation.jsx'
 
-
+import BatchUsers from './pages/BatchUsers.jsx'
 
 import Donations from './pages/Donations.jsx'
 
 
 import ChatPage from '../../frontend/src/components/ChatPage.jsx'
+import SolanaTransaction from './components/SolanaTransaction.jsx'
+import RazorpayTransaction from './components/RazorPayTransaction.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -53,12 +55,14 @@ const router = createBrowserRouter(
 
       {/* <Route path="/update-profile" element={<UpdateProfile />} />
           <Route path="/dashboard" element={<Dashboard />} /> */}
-      <Route path='projectposting' element={<OpenSourceProjectPosting/>}/>
+      {/* <Route path='projectposting' element={<OpenSourceProjectPosting/>}/> */}
 
 
       <Route path="/chat/:userId" element={<ChatPage />} />
       <Route path="donation" element={<Donations />} />
-
+      <Route path="/donations/solana" element={<SolanaTransaction />} />
+        <Route path="/donations/razorpay" element={<RazorpayTransaction />} />
+        <Route path="/batch/:batchName" element={<BatchUsers />} />
 
     </Route>
   )
