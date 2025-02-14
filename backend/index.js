@@ -114,6 +114,8 @@ connectDB()
 app.get('/', (req, res) => {
     res.send("Hello World!");
 })
+console.log("RAZORPAY_KEY:", process.env.RAZORPAY_KEY);
+console.log("RAZORPAY_SECRET:", process.env.RAZORPAY_SECRET);
 
 // console.log(process.env.RAZORPAY_KEY)
 app.post('/orders', async(req, res) => {
