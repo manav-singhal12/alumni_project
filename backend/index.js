@@ -18,10 +18,14 @@ dotenv.config({ path: "../.env" });
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.CORS_ORIGIN || "https://alumni-project-qwg6.vercel.app/",
+    origin: [
+        "http://localhost:5173",  // Allow development
+        "https://alumni-project-qwg6.vercel.app" // Allow production frontend
+    ],
     credentials: true,
   },
 });
+
 
 
 // Export `io` so it can be used in other files
