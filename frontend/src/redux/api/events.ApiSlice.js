@@ -15,10 +15,10 @@ export const eventApiSlice = apiSlice.injectEndpoints({
         })
 ,
     getEvents:builder.query({
-    query: () => `${EVENTS_URL}/allevents`,
+    query: () => `${EVENTS_URL}/getEvents`,
     transformResponse: (response) => {
-      console.log("API Response:", response); // Log to check the structure
-      return response.data; // Since the jobs are inside the `data` field
+      console.log("API Response:", response); 
+      return response; 
     },
   })
     })

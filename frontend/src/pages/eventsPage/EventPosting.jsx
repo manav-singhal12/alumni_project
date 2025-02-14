@@ -4,7 +4,7 @@ import { redirect, useNavigate } from "react-router";
 import Loader from '../../components/Loader.jsx'
 import {toast} from 'react-toastify'
 import { useSelector } from "react-redux";
-import {useGetEventsQuery} from '../../redux/api/events.ApiSlice.js'
+import { useGetEventsQuery } from "../../redux/api/events.ApiSlice.js";
 
 function EventPosting() {
 
@@ -19,10 +19,19 @@ function EventPosting() {
   const [joiningLink, setJoiningLink] = useState("");
 
   const [postEvent ,{isLoading}] = useEventPostMutation();
+
   // console.log(postEvent)
   const navigate =useNavigate();
   const { data: events, error, isSuccess, isError } = useGetEventsQuery();
-  console.log(events)
+
+  
+  console.log("the events are",events)
+  console.log(error);
+  console.log(isSuccess);
+  console.log(isError)
+  
+  
+
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -66,6 +75,7 @@ function EventPosting() {
   };
 
 //   return (
+
 //     <div className="max-w-3xl mx-auto p-8 bg-white shadow-lg rounded-lg border border-gray-200">
 //       <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">Post an Event</h2>
 //       <form onSubmit={handleSubmit} className="space-y-4">
@@ -137,6 +147,9 @@ function EventPosting() {
   // State for events
   // const [events, setEvents] = useState(loadEvents();
   // Toggle for showing the post-event form
+ 
+ 
+ 
   const [showPostForm, setShowPostForm] = useState(false);
  
 
@@ -354,7 +367,7 @@ function EventPosting() {
       
       
       
-          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {events.map((event) => (
             <div
               key={event.id}
@@ -377,9 +390,9 @@ function EventPosting() {
                   <span className="block text-gray-700 font-medium">
                     Location: {event.location}
                   </span>
-                </div>
+                </div> */}
                 {/* Show delete button if this event was posted by the logged-in user */}
-                 {user && event.postedBy === user.email && (
+                 {/* {user && event.postedBy === user.email && (
                   <button
                     onClick={() => handleDeleteEvent(event.id)}
                     className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-300"
@@ -390,7 +403,8 @@ function EventPosting() {
               </div>
             </div>
           ))} 
-          </section> 
+          </section>  */}
+          
 
 
 

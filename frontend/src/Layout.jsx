@@ -8,7 +8,7 @@ function Layout() {
   return (
     
     <>
-    {/* <Navbar/> */}
+   
      <Header />
      <ToastContainer/>
     <Outlet/>
