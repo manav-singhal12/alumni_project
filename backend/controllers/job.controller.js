@@ -1,7 +1,7 @@
 import {ApiError} from '../utils/ApiError.js'
 import { asyncHandler } from '../utils/asyncHandler.js'
 import { Job } from '../models/job.model.js';
-import { ApiResponse } from '../utils/ApiResponse.js';
+import { ApiResponse } from '../utils/Apiresponse.js';
 
 
 const PostJob = asyncHandler(async(req ,res)=>{
