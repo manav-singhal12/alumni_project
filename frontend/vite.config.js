@@ -9,7 +9,7 @@ export default defineConfig({
     proxy:{
       "/api":"https://alumni-project-3.onrender.com/",
       "/socket.io":"https://alumni-project-3.onrender.com/",
-      "/server":" https://alumni-project-qwg6.vercel.app",
+      "/server":" https://alumni-project-qwg6.vercel.app/",
       //
     }
   }

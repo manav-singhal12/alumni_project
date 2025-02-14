@@ -27,7 +27,7 @@ const app = express()
 // }));
 const allowedOrigins = [
     "http://localhost:5173", // Local development
-    "https://alumni-project-qwg6.vercel.app" // Deployed frontend
+    "https://alumni-project-qwg6.vercel.app/" // Deployed frontend
   ];
   
   app.use(
