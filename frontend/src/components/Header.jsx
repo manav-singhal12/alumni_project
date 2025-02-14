@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../redux/api/userApiSlice';
-import Loader from './Loader';
 import { toast } from 'react-toastify';
 import { logout } from "../redux/auth/authSlice.js";
 
