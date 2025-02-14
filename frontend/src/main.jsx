@@ -22,7 +22,7 @@ import ShowProjects from './pages/projectPages/ShowProjects.jsx'
 import GetAllEvents from './pages/eventsPage/GetAllEvents.jsx'
 import UpdateUserProfile from './pages/updateProfile/UpdateUserProfile.jsx'
 
-
+import Donation from './pages/Donation.jsx'
 
 import ChatPage from '../../frontend/src/components/ChatPage.jsx'
 
@@ -47,6 +47,7 @@ const router = createBrowserRouter(
       <Route path='projectposting' element={<OpenSourceProjectPosting/>}/>
 
       <Route path="/chat/:userId" element={<ChatPage />} />
+      <Route path="donation" element={<Donation />} />
 
 
     </Route>

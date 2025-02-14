@@ -362,11 +362,12 @@ function EventPosting() {
        
        
         {/* Display Events Grid */}
+      dsgd
       
       
       
       
-      
+
           {/* <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {events.map((event) => (
             <div
@@ -404,7 +405,7 @@ function EventPosting() {
             </div>
           ))} 
           </section>  */}
-          
+
 
 
 
