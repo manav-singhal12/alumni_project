@@ -15,7 +15,7 @@ import Layout from './Layout.jsx';
 import Register from './pages/authPages/Register.jsx';
 
 import GetAllJobs from './pages/jobsPage/GetAllJobs.jsx'
-import UserDashboard from './pages/UserDashboard.jsx'
+// import UserDashboard from './pages/UserDashboard.jsx'
 import Batches from './pages/Batches.jsx'
 
 import EventPosting from './pages/eventsPage/EventPosting.jsx'
@@ -28,7 +28,8 @@ import UpdateUserProfile from './pages/updateProfile/UpdateUserProfile.jsx'
 import BatchUsers from './pages/BatchUsers.jsx'
 
 import Donations from './pages/Donations.jsx'
-
+import UpdateProfile from './components/UpdateProfile.jsx'
+import Dashboard from './components/Dashboard.jsx'
 
 import ChatPage from '../../frontend/src/components/ChatPage.jsx'
 import SolanaTransaction from './components/SolanaTransaction.jsx'
@@ -44,19 +45,19 @@ const router = createBrowserRouter(
 
      
 
-      <Route path='getCurrentUser' element={<UserDashboard/>}/>
+      {/* <Route path='getCurrentUser' element={<UserDashboard/>}/> */}
       <Route path='batches' element={<Batches/>}/>
 
       <Route path="/chat/:userId" element={<ChatPage/>} />
  {/* <Route path='getallevents' element={<GetAllEvents/>}/> */} 
       <Route path='eventposting' element={<EventPosting/>}/>
       <Route path='getAllProjects' element={<ShowProjects/>}/>
-      <Route path='updateProfile' element={<UpdateUserProfile/>}/>
+      {/* <Route path='updateProfile' element={<UpdateUserProfile/>}/> */}
 
       {/* <Route path='projectposting' element={<OpenSourceProjectPosting/>}/> */}
 
-      {/* <Route path="/update-profile" element={<UpdateProfile />} />
-          <Route path="/dashboard" element={<Dashboard />} /> */}
+      <Route path="/update-profile" element={<UpdateProfile />} />
+          <Route path="/dashboard" element={<Dashboard />} />
       {/* <Route path='projectposting' element={<OpenSourceProjectPosting/>}/> */}
 
 

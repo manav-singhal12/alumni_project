@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useSendPaymentMutation } from '../redux/api/Payment.ApiSlice';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 const RazorpayTransaction = () => {
   const [responseId, setResponseId] = useState("");
 
@@ -19,6 +21,7 @@ const [recipientEmail, setRecipientEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const [sendPayment , {isLoading}] = useSendPaymentMutation();
+  const navigate = useNavigate();
 
 
   const handleSubmit =async (e) => {
@@ -55,7 +58,8 @@ const [recipientEmail, setRecipientEmail] = useState("");
       order_id: "", // Not using backend, so leave blank (Razorpay will generate an order)
       handler: function (response) {
         setResponseId(response.razorpay_payment_id);
-        alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+        toast.success("payment successfull")
+        navigate('/donation')
       },
       prefill: {
         name: "Student Name",

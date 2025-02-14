@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client";
 
-const socket = io("https://alumni-project-3.onrender.com", { withCredentials: true });
+const socket = io("http://localhost:5230", { withCredentials: true });
 
 const ChatPage = () => {
   const { userId } = useParams(); // Recipient ID
@@ -13,12 +13,13 @@ const ChatPage = () => {
   const [currentUserId, setCurrentUserId] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
-  const[receiverName,setReceiverName]=useState('');
+  const [receiverName, setReceiverName] = useState("");
   const messagesEndRef = useRef(null);
+
   useEffect(() => {
     getCurrentUser();
     fetchMessages();
-    getReceivertUser();
+    getReceiverUser();
 
     // Listen for incoming messages
     socket.on("receiveMessage", (message) => {
@@ -58,7 +59,7 @@ const ChatPage = () => {
   const getCurrentUser = async () => {
     try {
       const response = await axios.get(
-        "https://alumni-project-3.onrender.com/api/v1/users/getCurrentUser",
+        "http://localhost:5230/api/v1/users/getCurrentUser",
         { withCredentials: true }
       );
       setCurrentUserId(response.data.data._id);
@@ -70,26 +71,28 @@ const ChatPage = () => {
       );
     }
   };
-  const getReceivertUser = async () => {
+
+  const getReceiverUser = async () => {
     try {
       const response = await axios.get(
-       ' https://alumni-project-3.onrender.com/api/v1/users/getReceiverUser',
+        "http://localhost:5230/api/v1/users/getReceiverUser",
         { withCredentials: true }
       );
-      console.log("Receiver User Data:", response.data);
       setReceiverName(response.data.data.username);
     } catch (error) {
-      console.error("Error fetching receiver user:", error.response?.data || error.message);
+      console.error(
+        "Error fetching receiver user:",
+        error.response?.data || error.message
+      );
     }
   };
-  
+
   const fetchMessages = async () => {
     try {
       const response = await axios.get(
-        'https://alumni-project-3.onrender.com/api/messages/${userId}',
+       ` http://localhost:5230/api/messages/${userId}`,
         { withCredentials: true }
       );
-      console.log("Fetched Messages:", response.data);
       setMessages(
         response.data.sort(
           (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
@@ -109,7 +112,7 @@ const ChatPage = () => {
     try {
       const messageData = { recipientId: userId, text: newMessage };
       const response = await axios.post(
-        "https://alumni-project-3.onrender.com/api/messages",
+        "http://localhost:5230/api/messages",
         messageData,
         { withCredentials: true }
       );
@@ -137,63 +140,63 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="h-screen bg-[#ecf6f5] flex flex-col p-4">
-      {/* Chat Box Covering the Entire Screen */}
-      <div className="flex flex-col flex-1">
-        {/* Online Status */}
-        <span className="text-lg font-bold mb-2">Chat with {receiverName}</span>
-        <div className="mb-2 flex gap-2">
-          <span className="font-semibold">Status:</span>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex flex-col">
+      {/* Header */}
+      <header className="bg-white shadow-md rounded-b-xl p-4 flex flex-col sm:flex-row justify-between items-center">
+        <h1 className="text-2xl font-bold text-gray-800">
+          Chat with {receiverName}
+        </h1>
+        <div className="mt-2 sm:mt-0 flex items-center gap-2">
+          <span className="text-sm font-medium text-gray-600">Status:</span>
           {onlineUsers.includes(userId) ? (
-            <span className="text-green-500 font-bold">Online</span>
+            <span className="text-green-500 font-semibold">Online</span>
           ) : (
             <span className="text-gray-500">Offline</span>
           )}
         </div>
-        {/* Chat Messages */}
-        <div className="flex-1 overflow-y-auto p-3 border-b flex flex-col">
-          {messages.map((msg) => {
-            const isSentByCurrentUser = msg.sender === currentUserId;
-            return (
-              <div key={msg._id} className="mb-4 flex flex-col">
-                <div
-                  className={`p-2 rounded-md max-w-xs ${
-                    isSentByCurrentUser
-                      ? "bg-blue-500 text-white self-end"
-                      : "bg-gray-200 text-black self-start"
-                  }`}
-                >
-                  {msg.text}
-                </div>
-                <div
-                  className={`text-xs text-gray-500 mt-1 ${
-                    isSentByCurrentUser ? "self-end" : "self-start"
-                  }`}
-                >
+      </header>
+      {/* Messages Area */}
+      <main className="flex-1 overflow-y-auto p-6">
+        {messages.map((msg) => {
+          const isSentByCurrentUser = msg.sender === currentUserId;
+          return (
+            <div
+              key={msg._id}
+              className={`flex mb-4 ${
+                isSentByCurrentUser ? "justify-end" : "justify-start"
+              }`}
+            >
+              <div
+                className={`p-3 rounded-lg max-w-xs shadow-lg transition transform duration-300 ${
+                  isSentByCurrentUser
+                    ? "bg-blue-500 text-white rounded-br-none"
+                    : "bg-gray-200 text-gray-800 rounded-bl-none"
+                }`}
+              >
+                <p>{msg.text}</p>
+                <div className="text-xs text-gray-100 mt-1 text-right">
                   {formatTimestamp(msg.timestamp)}
                 </div>
               </div>
-            );
-          })}
-          {isTyping && (
-            <div className="self-start">
-              <div className="p-2 rounded-md bg-gray-200 text-black inline-block">
-                <span className="animate-pulse">...</span>
-              </div>
             </div>
-          )}
-          <div ref={messagesEndRef} />
-        </div>
-      </div>
-      {/* Input Field Always at Bottom */}
-      <div className="mt-3">
-        <div className="flex">
+          );
+        })}
+        {isTyping && (
+          <div className="flex justify-start mb-4">
+            <div className="p-3 rounded-lg bg-gray-200 text-gray-800 max-w-xs shadow-lg">
+              <span className="animate-pulse">Typing...</span>
+            </div>
+          </div>
+        )}
+        <div ref={messagesEndRef} />
+      </main>
+      {/* Input Area */}
+      <footer className="p-4 bg-white shadow-t mt-auto">
+        <div className="flex items-center gap-4">
           <input
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            className="flex-1 p-2 border rounded-md"
-            placeholder="Type a message..."
             onKeyPress={(e) => {
               if (e.key === "Enter") {
                 handleSendMessage();
@@ -201,15 +204,17 @@ const ChatPage = () => {
                 socket.emit("typing", { senderId: currentUserId });
               }
             }}
+            placeholder="Type your message..."
+            className="flex-1 p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
           />
           <button
             onClick={handleSendMessage}
-            className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md"
+            className="px-6 py-3 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition-colors duration-300"
           >
             Send
           </button>
         </div>
-      </div>
+      </footer>
     </div>
   );
 };

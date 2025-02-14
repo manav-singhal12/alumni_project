@@ -12,17 +12,13 @@ const BatchUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`https://alumni-project-3.onrender.com/api/users`);
+        const response = await fetch('http://localhost:5230/api/users');
         const data = await response.json();
-console.log(data);
-console.log(batchName);
         // Filter out the logged-in user
-        const loggedInUserId = localStorage.getItem("userId");
         const filteredUsers = data.filter(user => 
           String(user.batch).toLowerCase() === String(batchName).toLowerCase() &&
           String(user._id) !== String(loggedInUserId)
         );
-        console.log(filteredUsers);
         setUsers(filteredUsers);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -33,30 +29,34 @@ console.log(batchName);
   }, [batchName, loggedInUserId]);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">{batchName} Users</h1>
-      
-      <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div className="min-h-screen bg-gradient-to-r from-blue-100 to-purple-100 p-8">
+      <h1 className="text-4xl font-bold text-center text-gray-800 mb-8 drop-shadow-md">
+        {batchName} Users
+      </h1>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {users.length > 0 ? (
-          users?.map((user) => (
-            <div key={user._id} className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center">
+          users.map((user) => (
+            <div
+              key={user._id}
+              className="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center transition transform hover:-translate-y-1 hover:shadow-2xl"
+            >
               <img 
                 src={user.avatar || "/default-avatar.png"} 
                 alt={user.username} 
-                className="w-16 h-16 rounded-full border-2 border-gray-300 mb-3"
+                className="w-20 h-20 rounded-full border-4 border-indigo-300 mb-4 transition-transform duration-500 hover:scale-110"
               />
-              <h2 className="text-lg font-semibold">{user.username}</h2>
-              <p className="text-sm text-gray-600">{user.email}</p>
+              <h2 className="text-xl font-semibold text-gray-700">{user.username}</h2>
+              <p className="text-sm text-gray-500 mb-4">{user.email}</p>
               <button
                 onClick={() => navigate(`/chat/${user._id}`)}
-                className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+                className="mt-auto px-5 py-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 transition-colors duration-300 shadow-md"
               >
                 Chat
               </button>
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-500 col-span-3">No users found in this batch.</p>
+          <p className="text-center text-gray-600 col-span-3">No users found in this batch.</p>
         )}
       </div>
     </div>

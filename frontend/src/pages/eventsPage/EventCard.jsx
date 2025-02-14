@@ -6,7 +6,7 @@ const EventCard = ({ event }) => {
     <div className="w-80 bg-white shadow-lg rounded-xl p-4 relative border border-gray-300 transition-transform hover:scale-105 hover:shadow-xl">
       {/* Event Title */}
       <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2 mb-2">
-        <FaCalendarAlt className="text-pink-500" />
+        <FaCalendarAlt className="text-green-800" />
         {event.title}
       </h2>
 
@@ -27,7 +27,7 @@ const EventCard = ({ event }) => {
           {event.eventMode === "online" ? "Online" : "In-Person"}
         </div>
         <div className="flex items-center gap-2">
-          <FaCalendarAlt className="text-purple-500" /> {event.date}
+          <FaCalendarAlt className="text-black-500" /> {event.date}
         </div>
       </div>
 
@@ -46,7 +46,7 @@ const EventCard = ({ event }) => {
         href={event.joiningLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-500 text-white font-medium py-2 rounded-md hover:from-pink-600 hover:to-purple-600 transition-all"
+        className="w-full flex items-center justify-center bg-gradient-to-r from-green-800 to-green-200 text-white font-medium py-2 rounded-md hover:from-green-600 hover:to-green-900 transition-all"
       >
         <FaLink className="mr-1" /> Join Event
       </a>

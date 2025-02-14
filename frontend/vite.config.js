@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(),tailwindcss()],
   server:{
     proxy:{
-      "/api":"https://alumni-project-3.onrender.com/api"
+      "/api":"http://localhost:5230/"
     }
   }
 })

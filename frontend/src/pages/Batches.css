@@ -1,0 +1,19 @@
+/* Set the perspective for the 3D flip */
+.perspective {
+    perspective: 1000px;
+  }
+  
+  /* Preserve 3D transformation for child elements */
+  .transform-style-preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  /* Hide the backface to prevent flickering */
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  /* Rotate the card on hover (Tailwind’s group-hover utility is used via our custom class) */
+  .group:hover .group-hover\:rotate-y-180 {
+    transform: rotateY(180deg);
+  }

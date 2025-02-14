@@ -186,8 +186,8 @@ const [showPostForm, setShowPostForm] = useState(false);
         )}
 
 
-<div className="min-h-screen bg-gradient-to-r from-gray-900 to-gray-800 p-8">
-      <div className="space-y-8 max-w-7xl mx-auto">
+<div className="min-h-screen bg-gradient-to-r  p-8">
+      <div className="space-y-8 max-w-7xl mx-auto ">
         {projects.map((project, index) => (
           <ProjectCard key={index} project={project} />
         ))}

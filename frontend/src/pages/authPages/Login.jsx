@@ -17,20 +17,22 @@ const [loginApiCall ,{isLoading}] = useLoginMutation()
 const dispatch = useDispatch()
 
   
-useEffect(()=>{
-if(userInfo){
-    navigate('/getCurrentUser')
-}
-},[navigate , userInfo ])
+// useEffect(()=>{
+// if(userInfo){
+//     navigate('/getCurrentUser')
+// }
+// },[navigate , userInfo ])
+
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
       const res = await loginApiCall({ email, password }).unwrap();
       if(res){
         toast.success("Login successFully! ✅");
+        navigate('/dashboard')
       }
       dispatch(setCredentials(res));
-      navigate("/getCurrentUser");
+      // navigate("/getCurrentUser");
     } catch (error) {
      let errorMessage = "Login failed! ❌"; 
     

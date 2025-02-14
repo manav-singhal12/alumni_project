@@ -1,120 +1,10 @@
-// import React, { useState, useEffect } from 'react';
-
-// import image1 from './1.webp'
-// import image2 from './iiitu_image2.webp'
-// import image3 from './iiitu_image3.webp'
-// import image4 from './iiitu_inter.webp'
-
-
-// const LandingPage = () => {
-//   const fullText = "Weelcome to the Alumni Association";
-//   const [displayedText, setDisplayedText] = useState("");
-
-//   useEffect(() => {
-//     let index = 0;
-//     const timer = setInterval(() => {
-//       setDisplayedText((prev) => prev + fullText.charAt(index));
-//       index++;
-//       if (index === fullText.length) {
-//         clearInterval(timer);
-//       }
-//     }, 100);
-//     return () => clearInterval(timer);
-//   }, [fullText]);
-
-//   const gridItems = [
-//     {
-//       image: image1,
-//       alt: "Event 1",
-//       title: "Annual Alumni Meet",
-//       description: "Join us for the grand annual meet on February 15, 2025."
-//     },
-//     {
-//       image: image2,
-//       alt: "Alumni Achievement 1",
-//       title: "Alumni Achievement",
-//       description: "Rohit wins the Best Entrepreneur of the Year award."
-//     },
-//     {
-//       image: image3,
-//       alt: "Webinar on Career Growth",
-//       title: "Webinar on Career Growth",
-//       description: "Exclusive webinar by industry leaders on October 22, 2024."
-//     },
-//     {
-//       image: image4,
-//       alt: "Alumni Achievement 2",
-//       title: "Alumni Spotlight",
-//       description: "Shreya recognized for her contributions to technology."
-//     },
-//   ];
-
-//   return (
-//     <main id="home">
-//       {/* Hero Section */}
-//       <section
-//         className="relative h-[70vh] flex items-center justify-center bg-cover bg-center"
-//         style={{ backgroundImage: `url(${image3})` }}
-//       >
-//         <div className="absolute inset-0 bg-black opacity-50"></div>
-//         <div className="relative text-center text-white px-4">
-//           <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-wider">
-//             {displayedText}
-//           </h1>
-//           <p className="mt-4 text-xl">
-//             Celebrating the achievements and memories of our alumni.
-//           </p>
-//         </div>
-//       </section>
-
-//       {/* Expanded About Section */}
-//       <section className="py-12 bg-gray-100">
-//         <div className="max-w-4xl mx-auto px-4">
-//           <h2 className="text-3xl font-bold text-center text-[#004d40] mb-6">
-//             About Our Alumni Association
-//           </h2>
-//           <p className="text-lg text-gray-700 mb-4">
-//             Our Alumni Association is dedicated to fostering lifelong connections and empowering our graduates. We celebrate the successes of our community, create valuable networking opportunities, and offer resources that promote professional growth.
-//           </p>
-//           <p className="text-lg text-gray-700 mb-4">
-//             Whether you're looking to reconnect with old friends, share your success story, or gain industry insights, our association is here to support you. Join us as we build a vibrant and collaborative network, uniting generations through shared achievements and mutual inspiration.
-//           </p>
-//           <p className="text-lg text-gray-700 mb-4">
-//             We also organize a variety of events throughout the year, including annual reunions, professional development workshops, and exclusive networking sessions. These gatherings provide the perfect platform for alumni to exchange ideas, forge new partnerships, and inspire the next generation of leaders.
-//           </p>
-//           <p className="text-lg text-gray-700">
-//             Our commitment extends beyond events and networking. We offer mentorship programs, career support, and continuous learning opportunities to help our members stay ahead in a rapidly evolving professional landscape. Together, we create a legacy of excellence, innovation, and community spirit.
-//           </p>
-//         </div>
-//       </section>
-
-//       {/* Grid Section */}
-//       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 max-w-7xl mx-auto">
-//         {gridItems.map((item, index) => (
-//           <div key={index} className="relative group rounded-lg overflow-hidden shadow-lg">
-//             <img src={item.image} alt={item.alt} className="w-full h-56 object-cover" />
-//             <div className="absolute inset-0 bg-[#004d40] bg-opacity-70 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 text-center">
-//               <h2 className="text-white text-xl font-bold mb-2">{item.title}</h2>
-//               <p className="text-white text-sm">{item.description}</p>
-//             </div>
-//           </div>
-//         ))}
-//       </section>
-//     </main>
-//   );
-// };
-
-// export default LandingPage;
-
-
-
 import React, { useState, useEffect } from 'react';
-
+import { FiArrowRight, FiUsers, FiAward, FiBriefcase, FiCalendar } from 'react-icons/fi';
+import { motion } from 'framer-motion';
 import image1 from './1.webp';
 import image2 from './iiitu_image2.webp';
 import image3 from './iiitu_image3.webp';
 import image4 from './iiitu_inter.webp';
-
 
 const LandingPage = () => {
   const fullText = "Weelcome to the Alumni Association";
@@ -125,9 +15,7 @@ const LandingPage = () => {
     const timer = setInterval(() => {
       setDisplayedText((prev) => prev + fullText.charAt(index));
       index++;
-      if (index === fullText.length) {
-        clearInterval(timer);
-      }
+      if (index === fullText.length) clearInterval(timer);
     }, 100);
     return () => clearInterval(timer);
   }, []);
@@ -146,10 +34,13 @@ const LandingPage = () => {
       description: "Rohit wins the Best Entrepreneur of the Year award."
     },
     {
-      image: image1,
-      alt: "Event 1",
-      title: "Annual Alumni Meet",
-      description: "Join us for the grand annual meet on February 15, 2025."
+      
+        image: image4,
+        alt: "Community Outreach",
+        title: "Community Outreach Program",
+        description: "Be a part of our initiative to give back to the community on April 15, 2025. Join us in making a positive impact and forging lasting connections."
+      
+      
     },
     {
       image: image3,
@@ -157,44 +48,41 @@ const LandingPage = () => {
       title: "Webinar on Career Growth",
       description: "Exclusive webinar by industry leaders on October 22, 2024."
     },
-    {
-      image: image1,
-      alt: "Event 1",
-      title: "Annual Alumni Meet",
-      description: "Join us for the grand annual meet on February 15, 2025."
-    },
-    {
-      image: image4,
-      alt: "Alumni Achievement 2",
-      title: "Alumni Spotlight",
-      description: "Shreya recognized for her contributions to technology."
-    },
+   
+   
+  ];
+
+  const stats = [
+    { icon: FiUsers, value: "5000+", label: "Active Alumni" },
+    { icon: FiAward, value: "150+", label: "Awards Won" },
+    { icon: FiBriefcase, value: "89%", label: "Employment Rate" },
+    { icon: FiCalendar, value: "40+", label: "Annual Events" },
   ];
 
   const successStories = [
     {
       image: "./piyush_kumar_linkedin.jpg",
-      name: "Piyush kumar",
+      name: "Piyush Kumar",
       description:
         "ICPC Regionalist Piyush Kumar excels in C/C++, competitive programming, MERN Stack, and Flutter Development. As a Full-Stack Intern at Brihat Infotech, he built scalable software solutions, and his passion for innovation drives him to push tech boundaries and inspire future leaders at IIIT Una."
     },
     {
       image: "/shaksham_sharma_linkedin.jpg",
-      name: "Shaksham sharma",
+      name: "Shaksham Sharma",
       description:
-        "An SDE at Swiggy and a CSE graduate from IIIT Una, Shaksham sharma has excelled in Full-Stack Development, Problem-Solving, and Prompt Engineering. Previously a Full-Stack Developer at Praedico Global Research, he continues to innovate and push boundaries in the tech industry."
+        "An SDE at Swiggy and a CSE graduate from IIIT Una, Shaksham Sharma has excelled in Full-Stack Development, Problem-Solving, and Prompt Engineering. Previously a Full-Stack Developer at Praedico Global Research, he continues to innovate and push boundaries in the tech industry."
     },
     {
       image: "akshat_mittal_linkedin.jpg",
-      name: "Akshat mittal",
+      name: "Akshat Mittal",
       description:
-        "A Software Developer at Flipkart, Akshat mittal specializes in Web Development and Automation, driving efficiency and innovation in the tech space. With a passion for building scalable solutions, he continues to make an impact in the industry."
+        "A Software Developer at Flipkart, Akshat Mittal specializes in Web Development and Automation, driving efficiency and innovation in the tech space. With a passion for building scalable solutions, he continues to make an impact in the industry."
     },
     {
       image: "devang_sharma_linkedin.jpg",
-      name: "Devang sharma",
+      name: "Devang Sharma",
       description:
-        "An Engineering Backend Developer at MPL and an IIIT Una ’23 graduate, Devang sharma previously contributed to Groww, showcasing expertise in backend development and problem-solving. His passion for scalable systems continues to drive innovation in the tech industry."
+        "An Engineering Backend Developer at MPL and an IIIT Una ’23 graduate, Devang Sharma previously contributed to Groww, showcasing expertise in backend development and problem-solving. His passion for scalable systems continues to drive innovation in the tech industry."
     }
   ];
 
@@ -205,35 +93,58 @@ const LandingPage = () => {
         className="relative h-[70vh] flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${image3})` }}
       >
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative text-center text-white px-4 sm:px-6 md:px-8">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold uppercase tracking-wider">
+        <div className="absolute inset-0 bg-gradient-to-br from-black to-transparent opacity-70"></div>
+        <div className="relative text-center text-white px-4 sm:px-6 md:px-8 animate-fadeIn">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-wider drop-shadow-lg">
             {displayedText}
           </h1>
-          <p className="mt-4 text-lg sm:text-xl">
+          <p className="mt-6 text-xl sm:text-2xl md:text-3xl">
             Celebrating the achievements and memories of our alumni.
           </p>
         </div>
       </section>
 
-      {/* Success Stories Section */}
-      <section className="py-12 bg-white">
+
+
+      <section className="py-16 bg-white relative -mt-20 z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold text-center text-[#004d40] mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 bg-white rounded-2xl shadow-2xl p-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -10 }}
+                className="text-center p-6 rounded-xl bg-gradient-to-b from-gray-50 to-white"
+              >
+                <stat.icon className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
+                <div className="text-4xl font-bold text-gray-800 mb-2">{stat.value}</div>
+                <div className="text-gray-600">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      
+
+      {/* Success Stories Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-[#004d40] mb-12">
             Success Stories of our Alumni
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {successStories.map((story, index) => (
-              <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-lg">
-                <div className="flex items-center">
+              <div key={index} className="bg-gray-50 p-8 rounded-2xl shadow-lg transition transform hover:-translate-y-2 hover:shadow-2xl">
+                <div className="flex items-center mb-6">
                   <img
                     src={story.image}
                     alt={story.name}
-                    className="w-16 h-16 object-cover rounded-full mr-4"
+                    className="w-20 h-20 object-cover rounded-full mr-6 border-2 border-[#004d40]"
                   />
-                  <h3 className="text-xl font-semibold">{story.name}</h3>
+                  <h3 className="text-2xl font-semibold text-gray-800">{story.name}</h3>
                 </div>
-                <p className="text-gray-700 mt-4">{story.description}</p>
+                <p className="text-gray-700 text-lg">{story.description}</p>
               </div>
             ))}
           </div>
@@ -241,37 +152,42 @@ const LandingPage = () => {
       </section>
 
       {/* Marquee Grid Section */}
-      <section className="relative overflow-hidden py-8 bg-gray-50">
+      <section className="relative overflow-hidden py-12 bg-gray-50">
         <style>
           {`
             @keyframes marquee {
-              from { transform: translateX(0); }
-              to { transform: translateX(-50%); }
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
             }
             .animate-marquee {
-              display: flex;
-              white-space: nowrap;
-              animation: marquee 15s linear infinite;
+              animation: marquee 20s linear infinite;
+            }
+            .animate-fadeIn {
+              animation: fadeIn 2s ease-in-out;
+            }
+            @keyframes fadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
             }
           `}
         </style>
         <div className="w-full overflow-hidden">
-          <div className="animate-marquee" style={{ width: "max-content" }}>
+          <div className="flex animate-marquee" style={{ width: "max-content" }}>
             {[...gridItems, ...gridItems].map((item, index) => (
               <div
                 key={index}
-                className="relative group rounded-lg overflow-hidden shadow-lg w-64 m-4 flex-shrink-0"
+                className="relative group rounded-2xl overflow-hidden shadow-xl w-72 m-4 flex-shrink-0 transition transform hover:scale-105"
               >
                 <img
                   src={item.image}
                   alt={item.alt}
-                  className="w-full h-56 object-cover"
+                  className="w-full h-56 object-cover transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-[#004d40] bg-opacity-70 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 text-center">
-                  <h2 className="text-white text-xl md:text-2xl font-bold mb-2">
+                <div className="absolute inset-0 bg-[#004d40] bg-opacity-75 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-4 text-center">
+                  <h2 className="text-white text-2xl font-bold mb-3">
                     {item.title}
                   </h2>
-                  <p className="text-white text-sm md:text-base">{item.description}</p>
+                  <p className="text-white text-base">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -280,22 +196,22 @@ const LandingPage = () => {
       </section>
 
       {/* Expanded About Section */}
-      <section className="py-12 bg-gray-100">
+      <section className="py-16 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white p-6 sm:p-8 shadow-xl rounded-lg">
-            <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold text-center text-[#004d40] mb-6">
+          <div className="bg-white p-10 sm:p-12 shadow-2xl rounded-2xl">
+            <h2 className="text-3xl sm:text-4xl font-bold text-center text-[#004d40] mb-8">
               About Our Alumni Association
             </h2>
-            <p className="text-base sm:text-lg text-gray-700 mb-4">
+            <p className="text-lg text-gray-700 mb-6">
               Our Alumni Association is dedicated to fostering lifelong connections and empowering our graduates. We celebrate the successes of our community, create valuable networking opportunities, and offer resources that promote professional growth.
             </p>
-            <p className="text-base sm:text-lg text-gray-700 mb-4">
+            <p className="text-lg text-gray-700 mb-6">
               Whether you're looking to reconnect with old friends, share your success story, or gain industry insights, our association is here to support you. Join us as we build a vibrant and collaborative network, uniting generations through shared achievements and mutual inspiration.
             </p>
-            <p className="text-base sm:text-lg text-gray-700 mb-4">
+            <p className="text-lg text-gray-700 mb-6">
               We also organize a variety of events throughout the year, including annual reunions, professional development workshops, and exclusive networking sessions. These gatherings provide the perfect platform for alumni to exchange ideas, forge new partnerships, and inspire the next generation of leaders.
             </p>
-            <p className="text-base sm:text-lg text-gray-700">
+            <p className="text-lg text-gray-700">
               Our commitment extends beyond events and networking. We offer mentorship programs, career support, and continuous learning opportunities to help our members stay ahead in a rapidly evolving professional landscape. Together, we create a legacy of excellence, innovation, and community spirit.
             </p>
           </div>
@@ -306,408 +222,3 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-
-
-
-
-/*import React from "react";
-
-const Team = () => {
-  return (
-    <section className="pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]">
-      <div className="container mx-auto">
-        <div className="-mx-4 flex flex-wrap">
-          <div className="w-full px-4">
-            <div className="mx-auto mb-[60px] max-w-[510px] text-center">
-              <span className="mb-2 block text-lg font-semibold text-primary">
-                Our Team
-              </span>
-              <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-dark dark:text-white sm:text-4xl md:text-[40px]">
-                Our Awesome Team
-              </h2>
-              <p className="text-base text-body-color dark:text-dark-6">
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="-mx-4 flex flex-wrap justify-center">
-          <TeamCard
-            name="Coriss Ambady"
-            profession="Web Developer"
-            imageSrc="https://i.ibb.co/T1J9LD4/image-03-2.jpg"
-          />
-          <TeamCard
-            name="Coriss Ambady"
-            profession="Web Developer"
-            imageSrc="https://i.ibb.co/8P6cvVy/image-01-1.jpg"
-          />
-          <TeamCard
-            name="Coriss Ambady"
-            profession="Web Developer"
-            imageSrc="https://i.ibb.co/30tGtjP/image-04.jpg"
-          />
-          <TeamCard
-            name="Coriss Ambady"
-            profession="Web Developer"
-            imageSrc="https://i.ibb.co/yVVT0Dp/image-02-2.jpg"
-          />
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Team;
-
-const TeamCard = ({ imageSrc, name, profession }) => {
-  return (
-    <>
-      <div className="w-full px-4 md:w-1/2 xl:w-1/4">
-        <div className="mx-auto mb-10 w-full max-w-[370px]">
-          <div className="relative overflow-hidden rounded-lg">
-            <img src={imageSrc} alt="" className="w-full" />
-            <div className="absolute bottom-5 left-0 w-full text-center">
-              <div className="relative mx-5 overflow-hidden rounded-lg bg-white px-3 py-5 dark:bg-dark-2">
-                <h3 className="text-base font-semibold text-dark dark:text-white">
-                  {name}
-                </h3>
-                <p className="text-xs text-body-color dark:text-dark-6">
-                  {profession}
-                </p>
-                <div>
-                  <span className="absolute bottom-0 left-0">
-                    <svg
-                      width={61}
-                      height={30}
-                      viewBox="0 0 61 30"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle
-                        cx={16}
-                        cy={45}
-                        r={45}
-                        fill="#13C296"
-                        fillOpacity="0.11"
-                      />
-                    </svg>
-                  </span>
-                  <span className="absolute right-0 top-0">
-                    <svg
-                      width={20}
-                      height={25}
-                      viewBox="0 0 20 25"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle
-                        cx="0.706257"
-                        cy="24.3533"
-                        r="0.646687"
-                        transform="rotate(-90 0.706257 24.3533)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="6.39669"
-                        cy="24.3533"
-                        r="0.646687"
-                        transform="rotate(-90 6.39669 24.3533)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="12.0881"
-                        cy="24.3533"
-                        r="0.646687"
-                        transform="rotate(-90 12.0881 24.3533)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="17.7785"
-                        cy="24.3533"
-                        r="0.646687"
-                        transform="rotate(-90 17.7785 24.3533)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="0.706257"
-                        cy="18.6624"
-                        r="0.646687"
-                        transform="rotate(-90 0.706257 18.6624)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="6.39669"
-                        cy="18.6624"
-                        r="0.646687"
-                        transform="rotate(-90 6.39669 18.6624)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="12.0881"
-                        cy="18.6624"
-                        r="0.646687"
-                        transform="rotate(-90 12.0881 18.6624)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="17.7785"
-                        cy="18.6624"
-                        r="0.646687"
-                        transform="rotate(-90 17.7785 18.6624)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="0.706257"
-                        cy="12.9717"
-                        r="0.646687"
-                        transform="rotate(-90 0.706257 12.9717)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="6.39669"
-                        cy="12.9717"
-                        r="0.646687"
-                        transform="rotate(-90 6.39669 12.9717)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="12.0881"
-                        cy="12.9717"
-                        r="0.646687"
-                        transform="rotate(-90 12.0881 12.9717)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="17.7785"
-                        cy="12.9717"
-                        r="0.646687"
-                        transform="rotate(-90 17.7785 12.9717)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="0.706257"
-                        cy="7.28077"
-                        r="0.646687"
-                        transform="rotate(-90 0.706257 7.28077)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="6.39669"
-                        cy="7.28077"
-                        r="0.646687"
-                        transform="rotate(-90 6.39669 7.28077)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="12.0881"
-                        cy="7.28077"
-                        r="0.646687"
-                        transform="rotate(-90 12.0881 7.28077)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="17.7785"
-                        cy="7.28077"
-                        r="0.646687"
-                        transform="rotate(-90 17.7785 7.28077)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="0.706257"
-                        cy="1.58989"
-                        r="0.646687"
-                        transform="rotate(-90 0.706257 1.58989)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="6.39669"
-                        cy="1.58989"
-                        r="0.646687"
-                        transform="rotate(-90 6.39669 1.58989)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="12.0881"
-                        cy="1.58989"
-                        r="0.646687"
-                        transform="rotate(-90 12.0881 1.58989)"
-                        fill="#3056D3"
-                      />
-                      <circle
-                        cx="17.7785"
-                        cy="1.58989"
-                        r="0.646687"
-                        transform="rotate(-90 17.7785 1.58989)"
-                        fill="#3056D3"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}; */
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState, useEffect } from 'react';
-
-// const Home = () => {
-//   const fullText = "Weelcome to the Alumni Association";
-//   const [displayedText, setDisplayedText] = useState("");
-
-//   useEffect(() => {
-//     let index = 0;
-//     const timer = setInterval(() => {
-//       setDisplayedText((prev) => prev + fullText.charAt(index));
-//       index++;
-//       if (index === fullText.length) {
-//         clearInterval(timer);
-//       }
-//     }, 100);
-//     return () => clearInterval(timer);
-//   }, []);
-
-//   const gridItems = [
-//     {
-//       image: "/iiitu_academic.webp",
-//       alt: "Event 1",
-//       title: "Annual Alumni Meet",
-//       description: "Join us for the grand annual meet on February 15, 2025."
-//     },
-//     {
-//       image: "/iiitu_inter.webp",
-//       alt: "Alumni Achievement 1",
-//       title: "Alumni Achievement",
-//       description: "Rohit wins the Best Entrepreneur of the Year award."
-//     },
-//     {
-//       image: "/iiitu_image2.webp",
-//       alt: "Webinar on Career Growth",
-//       title: "Webinar on Career Growth",
-//       description: "Exclusive webinar by industry leaders on October 22, 2024."
-//     },
-//     {
-//       image: "/iiitu_inter.webp",
-//       alt: "Alumni Achievement 2",
-//       title: "Alumni Spotlight",
-//       description: "Shreya recognized for her contributions to technology."
-//     },
-//   ];
-
-//   const successStories = [
-//     {
-//       name: "Rohit Sharma",
-//       title: "Innovative Entrepreneur",
-//       description: "Rohit founded a tech startup that revolutionized online education, empowering thousands of students globally. Rohit founded a tech startup that revolutionized online education, empowering thousands of students globally."
-//     },
-//     {
-//       name: "Shreya Kapoor",
-//       title: "Tech Trailblazer",
-//       description: "Shreya's breakthrough work in AI has earned her accolades and significantly advanced research in machine learning. Shreya's breakthrough work in AI has earned her accolades and significantly advanced research in machine learning."
-//     },
-//     {
-//       name: "Amit Verma",
-//       title: "Global Business Leader",
-//       description: "Amit's visionary leadership has driven transformative changes across industries and fostered international collaborations. Amit's visionary leadership has driven transformative changes across industries and fostered international collaborations."
-//     },
-//     {
-//       name: "Priya Singh",
-//       title: "Social Impact Pioneer",
-//       description: "Priya's commitment to social entrepreneurship has led to sustainable development initiatives in underprivileged communities. Priya's commitment to social entrepreneurship has led to sustainable development initiatives in underprivileged communities."
-//     }
-//   ];
-
-//   return (
-//     <main id="home">
-//       {/* Hero Section */}
-//       <section
-//         className="relative h-[70vh] flex items-center justify-center bg-cover bg-center"
-//         style={{ backgroundImage: "url('/iiitu_image3.webp')" }}
-//       >
-//         <div className="absolute inset-0 bg-black opacity-50"></div>
-//         <div className="relative text-center text-white px-4">
-//           <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-wider">
-//             {displayedText}
-//           </h1>
-//           <p className="mt-4 text-xl">
-//             Celebrating the achievements and memories of our alumni.
-//           </p>
-//         </div>
-//       </section>
-
-//  {/* Success Stories Section */}
-//  <section className="py-12 bg-white">
-//         <div className="max-w-7xl  mx-auto px-4">
-//           <h2 className="text-3xl font-bold text-center text-[#004d40] mb-8">
-//             Success Stories of our alumni 
-//           </h2>
-//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-//             {successStories.map((story, index) => (
-//               <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-lg">
-//                 <h3 className="text-xl font-semibold mb-2">{story.name}</h3>
-//                 <p className="text-[#004d40] font-medium mb-2">{story.title}</p>
-//                 <p className="text-gray-700">{story.description}</p>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-
-      
-//       {/* Grid Section */}
-//       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 max-w-7xl mx-auto">
-//         {gridItems.map((item, index) => (
-//           <div key={index} className="relative group rounded-lg overflow-hidden shadow-lg">
-//             <img src={item.image} alt={item.alt} className="w-full h-56 object-cover" />
-//             <div className="absolute inset-0 bg-[#004d40] bg-opacity-70 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 text-center">
-//               <h2 className="text-white text-xl font-bold mb-2">{item.title}</h2>
-//               <p className="text-white text-sm">{item.description}</p>
-//             </div>
-//           </div>
-//         ))}
-//       </section>
-
-//       {/* Expanded About Section */}
-//       <section className="py-12 bg-gray-100">
-//         <div className="max-w-7xl mx-auto px-4">
-//           <div className="bg-white p-8 shadow-xl rounded-lg">
-//             <h2 className="text-3xl font-bold text-center text-[#004d40] mb-6">
-//               About Our Alumni Association
-//             </h2>
-//             <p className="text-lg text-gray-700 mb-4">
-//               Our Alumni Association is dedicated to fostering lifelong connections and empowering our graduates. We celebrate the successes of our community, create valuable networking opportunities, and offer resources that promote professional growth.
-//             </p>
-//             <p className="text-lg text-gray-700 mb-4">
-//               Whether you're looking to reconnect with old friends, share your success story, or gain industry insights, our association is here to support you. Join us as we build a vibrant and collaborative network, uniting generations through shared achievements and mutual inspiration.
-//             </p>
-//             <p className="text-lg text-gray-700 mb-4">
-//               We also organize a variety of events throughout the year, including annual reunions, professional development workshops, and exclusive networking sessions. These gatherings provide the perfect platform for alumni to exchange ideas, forge new partnerships, and inspire the next generation of leaders.
-//             </p>
-//             <p className="text-lg text-gray-700">
-//               Our commitment extends beyond events and networking. We offer mentorship programs, career support, and continuous learning opportunities to help our members stay ahead in a rapidly evolving professional landscape. Together, we create a legacy of excellence, innovation, and community spirit.
-//             </p>
-//           </div>
-//         </div>
-//       </section>
-//     </main>
-//   );
-// };
-
-// export default Home;
