@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import {useGetProjectsQuery} from '../../redux/api/PostProject.ApiSlice.js'
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import ProjectCard from "./ProjectCard.jsx";
 // import { useGetJobsQuery } from "../redux/api/jobApi";
 
 
 
 function ShowProjects() {
     const { data: projects, error, isLoading, isSuccess, isError } = useGetProjectsQuery();
-    // console.log(projects)
+    console.log(projects)
     console.log(error)
     console.log(isLoading)
     console.log(isSuccess)
@@ -227,15 +228,13 @@ function ShowProjects() {
 
 
 
-
-  <div className="container mx-auto px-4 py-8">
-    <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Job Listings</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {jobs?.map((job) => (
-        <JobCard key={job.id} job={job} />
-      ))}
+<div className="min-h-screen bg-gradient-to-r from-gray-900 to-gray-800 p-8">
+      <div className="space-y-8 max-w-7xl mx-auto">
+        {projects.map((project, index) => (
+          <ProjectCard key={index} project={project} />
+        ))}
+      </div>
     </div>
-  </div>
 
 
 
