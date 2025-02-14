@@ -12,7 +12,7 @@ const BatchUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:5230/api/users');
+        const response = await fetch('https://alumni-project-i1qf.onrender.com/api/users');
         const data = await response.json();
         // Filter out the logged-in user
         const filteredUsers = data.filter(user => 

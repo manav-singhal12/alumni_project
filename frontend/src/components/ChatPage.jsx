@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5230", { withCredentials: true });
+const socket = io("https://alumni-project-i1qf.onrender.com", { withCredentials: true });
 
 const ChatPage = () => {
   const { userId } = useParams(); // Recipient ID
@@ -59,7 +59,7 @@ const ChatPage = () => {
   const getCurrentUser = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5230/api/v1/users/getCurrentUser",
+        "https://alumni-project-i1qf.onrender.com/api/v1/users/getCurrentUser",
         { withCredentials: true }
       );
       setCurrentUserId(response.data.data._id);
@@ -75,7 +75,7 @@ const ChatPage = () => {
   const getReceiverUser = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5230/api/v1/users/getReceiverUser",
+        "https://alumni-project-i1qf.onrender.com/api/v1/users/getReceiverUser",
         { withCredentials: true }
       );
       setReceiverName(response.data.data.username);
@@ -90,7 +90,7 @@ const ChatPage = () => {
   const fetchMessages = async () => {
     try {
       const response = await axios.get(
-       ` http://localhost:5230/api/messages/${userId}`,
+       ` https://alumni-project-i1qf.onrender.com/api/messages/${userId}`,
         { withCredentials: true }
       );
       setMessages(
@@ -112,7 +112,7 @@ const ChatPage = () => {
     try {
       const messageData = { recipientId: userId, text: newMessage };
       const response = await axios.post(
-        "http://localhost:5230/api/messages",
+        "https://alumni-project-i1qf.onrender.com/api/messages",
         messageData,
         { withCredentials: true }
       );
